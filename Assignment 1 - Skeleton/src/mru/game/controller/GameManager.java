@@ -1,5 +1,6 @@
 package mru.game.controller;
 
+import java.util.ArrayList;
 
 public class GameManager {
 	
@@ -11,7 +12,15 @@ public class GameManager {
 	 * A method to find the top players
 	 * Depending on your designing technique you may need and you can add more methods here 
 	 */
-
 	
+	public GameManager() {
+		// TODO: implement the GameManager constructor.
+	}
+	
+	// BEGIN: save file implementation.
+	public ArrayList<String[]> arrayList$StringArray$saveFile = new ArrayList<String[]>();
+	public void loadSaveFile(String filename) {
+		// TODO: check if the file exists, and then load it.
+	}
 
 }
