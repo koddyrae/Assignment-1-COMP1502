@@ -14,16 +14,21 @@ public class GameManager {
 	public GameManager() {
 		// TODO: implement the GameManager constructor.
 		// Main loop and main menu
-		do {		
-			// TODO: player initialization
+		do {
+			// Game menu triggered.
+			
+			// TODO: player must be initialized as new or with existing property values.
 			Gambler player = new Gambler("Player", 100, 0);
 			
 			PuntoBancoGame currentGame = new PuntoBancoGame(player);
+			
 			// Game/betting menu and game loop
 			boolean playAgainFlag = true;
 			do {
-				char betChoice = 'P';
-				int betAmount = 0;;
+				// Betting menu triggered.
+				
+				char betChoice = 'P'; // TODO: must be validated!
+				int betAmount = 0; // TODO: Must be validated!
 				currentGame.playRound(betChoice, betAmount);
 				
 				// TODO: return to betting menu.

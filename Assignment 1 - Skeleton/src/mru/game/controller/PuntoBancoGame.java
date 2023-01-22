@@ -20,12 +20,17 @@ public class PuntoBancoGame {
 	public PuntoBancoGame(Gambler player) {
 		this.deck = new CardDeck(); // Ensure a fresh deck of cards is available.
 		this.seatsAtTable.add(new Gambler(true)); // Ensure a banker is at the table, awaiting players.
-		// Call procedures to play out the round. The player and deck should be  enough information.
-		
-		this.seatsAtTable.add(new Gambler(false));
+		this.seatsAtTable.add(player);
 	}
 	
 	public void playRound(char betChoice, int betAmount) {
+		int bankerScore = 0;
+		int playerScore = 0;
+		
+		// Deduct the wager from the player's balance.
+		// Recall that the player sits at the table second.
+		this.seatsAtTable.get(1).balance -= betAmount;
+		
 		// Deal 2 cards to the player and 2 cards to the Banker
 		for(Gambler seat : this.seatsAtTable) {
 			seat.hand.addAll(drawCards(2));
@@ -36,35 +41,92 @@ public class PuntoBancoGame {
 			if(seat.scoreHand() >= 8) {
 				break;
 			} else {
-				// TODO: deal additional cards according to the logic.
+				// Score hands
+				// Recall that BANKER sat at the table first.
+				bankerScore = this.seatsAtTable.get(0).scoreHand();
+				playerScore = this.seatsAtTable.get(1).scoreHand();
+				
+				if (playerScore >= 0 && playerScore <= 5) {
+					ArrayList <Card> playerHand = this.seatsAtTable.get(1).hand; 
+					// Player draws a third card.
+					playerHand.addAll(drawCards(1));
+					
+					// Banker draws a third card, conditionally.
+					switch (playerHand.get(2).getRank()) {
+					case 2: case 3:
+						if (bankerScore >= 0 && bankerScore <= 4) {
+							// Banker draws a third card.
+							this.seatsAtTable.get(0).hand.addAll(drawCards(1));
+						}
+						break;
+					case 4: case 5:
+						if (bankerScore >= 0 && bankerScore <= 5) {
+							// Banker draws a third card.
+							this.seatsAtTable.get(0).hand.addAll(drawCards(1));
+						}
+						break;
+					case 6: case 7:
+						if (bankerScore >= 0 && bankerScore <= 6) {
+							// Banker draws a third card.
+							this.seatsAtTable.get(0).hand.addAll(drawCards(1));
+						}
+						break;
+					case 8:
+						if (bankerScore >= 0 && bankerScore <= 2) {
+							// Banker draws a third card.
+							this.seatsAtTable.get(0).hand.addAll(drawCards(1));
+						}
+						break;
+					case 1: case 9: case 10: case 11: case 12: case 13:
+						if (bankerScore >= 0 && bankerScore <= 3) {
+							// Banker draws a third card.
+							this.seatsAtTable.get(0).hand.addAll(drawCards(1));
+						}
+						break;
+					default:
+						System.out.println("DEVEL: DEBUG: ERROR: the default case should never be reached during normal operation.");
+					}
+				} else if (bankerScore >= 0 && bankerScore <= 5) {
+					// Banker draws a third card.
+					this.seatsAtTable.get(0).hand.addAll(drawCards(1));
+				}
 			}
 		}
-
+		
 		// Score hands
 		// Recall that BANKER sat at the table first.
-		int bankerScore = this.seatsAtTable.get(0).scoreHand();
-		int playerScore = this.seatsAtTable.get(1).scoreHand();
+		bankerScore = this.seatsAtTable.get(0).scoreHand();
+		playerScore = this.seatsAtTable.get(1).scoreHand();
 
 		// Bet successful?
 		// TODO: FIXME: these cases are defensive and don't rely on pre-validated input.
 		switch (betChoice) {
 		case 'T': case 't':
 			if (playerScore == bankerScore) {
+				this.seatsAtTable.get(1).balance += 6 * betAmount;
+				
 				System.out.println("Player bet successfully!");
+				System.out.println("Player won 5x the bet (winnings and wager returned to player's balance)!");
 			} else {
-				System.out.println("Player lost their bet.");
+				System.out.println("Player lost their bet.");				
 			}
 			break;
 		case 'P': case 'p':
-			if (playerScore == bankerScore) {
+			if (playerScore > bankerScore) {
+				this.seatsAtTable.get(1).balance += 2 * betAmount;
+				
 				System.out.println("Player bet successfully!");
+				System.out.println("Player won 1x the bet (winnings and wager returned to player's balance)!");
 			} else {
 				System.out.println("Player lost their bet.");
 			}
 			break;
 		case 'B': case 'b':
-			if (playerScore == bankerScore) {
+			if (playerScore < bankerScore) {
+				this.seatsAtTable.get(1).balance += 2 * betAmount;
+				
 				System.out.println("Player bet successfully!");
+				System.out.println("Player won 1x the bet (winnings and wager returned to player's balance)!");
 			} else {
 				System.out.println("Player lost their bet.");
 			}
@@ -83,11 +145,9 @@ public class PuntoBancoGame {
 			if(deck.getDeck().size() >= 1) {
 				cards.add(deck.getDeck().remove(0));
 			} else {
-				deck.createDeck();
-				deck.shuffleDeck();
+				this.deck = new CardDeck();
 				cards.add(deck.getDeck().remove(0));
 			}
-			
 		}
 		return cards;
 	}
