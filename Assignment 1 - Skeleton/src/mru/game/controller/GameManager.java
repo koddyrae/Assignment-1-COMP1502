@@ -1,7 +1,5 @@
 package mru.game.controller;
 
-import java.util.ArrayList;
-
 public class GameManager {
 	
 	/* In this class toy'll need these methods:
@@ -15,12 +13,23 @@ public class GameManager {
 	
 	public GameManager() {
 		// TODO: implement the GameManager constructor.
+		// Main loop and main menu
+		do {		
+			// TODO: player initialization
+			Gambler player = new Gambler("Player", 100, 0);
+			
+			PuntoBancoGame currentGame = new PuntoBancoGame(player);
+			// Game/betting menu and game loop
+			boolean playAgainFlag = true;
+			do {
+				char betChoice = 'P';
+				int betAmount = 0;;
+				currentGame.playRound(betChoice, betAmount);
+				
+				// TODO: return to betting menu.
+			} while (playAgainFlag); // TODO: change the condition.
+			
+			
+		} while (true); // TODO: change the condition.
 	}
-	
-	// BEGIN: save file implementation.
-	public ArrayList<String[]> arrayList$StringArray$saveFile = new ArrayList<String[]>();
-	public void loadSaveFile(String filename) {
-		// TODO: check if the file exists, and then load it.
-	}
-
 }
