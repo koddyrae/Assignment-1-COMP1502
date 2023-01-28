@@ -1,9 +1,6 @@
 package mru.game.controller;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 import mru.game.model.Player;
@@ -46,19 +43,26 @@ public class GameManager {
 		} while (true); // TODO: change the condition.
 	}
 	
-	public void loadTextFile(String filename) throws FileNotFoundException, IOException {
+	public void loadTextFile(String filename) throws IOException {
+		File file = new File(filename);
 		
-		FileReader fr = new FileReader(filename);
-		BufferedReader br = new BufferedReader(fr);
-		ArrayList<Player> listOfPlayers = new ArrayList<>();
-		
-		String line;
-		
-		while((line = br.readLine()) != null) {
-			String[] dataLine = line.split(",");
-			Player player = new Player(dataLine[0], Integer.parseInt(dataLine[1]), Integer.parseInt(dataLine[2]));
-			listOfPlayers.add(player);
+		if (file.exists()) {
+			FileReader fr = new FileReader(filename);
+			BufferedReader br = new BufferedReader(fr);
+			ArrayList<Player> listOfPlayers = new ArrayList<>();
 			
+			String line;
+			
+			while((line = br.readLine()) != null) {
+				String[] dataLine = line.split(",");
+				Player player = new Player((dataLine[0]), (Integer.parseInt(dataLine[1])), (Integer.parseInt(dataLine[2])));
+				listOfPlayers.add(player);
+				
+			}
 		}
+		else {
+			System.out.println("No file to load"); //temporary until know if we have to create the file or not
+		}
+		
 	}
 }

@@ -15,6 +15,14 @@ public class Player {
 	private int numOfWins;
 	
 	/**
+	 * Default constructor for player object
+	 */
+	
+	public Player() {
+		
+	}
+	
+	/**
 	 * Constructor for player object
 	 * @param name
 	 * @param balance
