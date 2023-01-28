@@ -1,5 +1,10 @@
 package mru.game.controller;
 
+import java.io.*;
+import java.util.ArrayList;
+
+import mru.game.model.Player;
+
 public class GameManager {
 	
 	/* In this class toy'll need these methods:
@@ -36,5 +41,28 @@ public class GameManager {
 			
 			
 		} while (true); // TODO: change the condition.
+	}
+	
+	public void loadTextFile(String filename) throws IOException {
+		File file = new File(filename);
+		
+		if (file.exists()) {
+			FileReader fr = new FileReader(filename);
+			BufferedReader br = new BufferedReader(fr);
+			ArrayList<Player> listOfPlayers = new ArrayList<>();
+			
+			String line;
+			
+			while((line = br.readLine()) != null) {
+				String[] dataLine = line.split(",");
+				Player player = new Player((dataLine[0]), (Integer.parseInt(dataLine[1])), (Integer.parseInt(dataLine[2])));
+				listOfPlayers.add(player);
+				
+			}
+		}
+		else {
+			System.out.println("No file to load"); //temporary until know if we have to create the file or not
+		}
+		
 	}
 }
