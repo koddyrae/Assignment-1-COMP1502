@@ -43,6 +43,12 @@ public class GameManager {
 		} while (true); // TODO: change the condition.
 	}
 	
+	/**
+	 * User inputs a file name and if it exists, it will load a Player arraylist
+	 * @param filename,  user inputted filename
+	 * @throws IOException
+	 * @author Koddyrae
+	 */
 	public void loadTextFile(String filename) throws IOException {
 		File file = new File(filename);
 		
