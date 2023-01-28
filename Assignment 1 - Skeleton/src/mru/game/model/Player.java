@@ -34,4 +34,15 @@ public class Player {
 		this.numOfWins = numOfWins;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
+	public int getBalance() {
+		return balance;
+	}
+	
+	public int getWins() {
+		return numOfWins;
+	}
 }
