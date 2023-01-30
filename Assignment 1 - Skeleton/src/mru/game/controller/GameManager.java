@@ -15,6 +15,7 @@ public class GameManager {
 	 * A method to find the top players
 	 * Depending on your designing technique you may need and you can add more methods here 
 	 */
+	ArrayList<Player> listOfPlayers = new ArrayList<>();
 	
 	public GameManager() {
 		// TODO: implement the GameManager constructor.
@@ -44,10 +45,11 @@ public class GameManager {
 	}
 	
 	/**
+	 * @author Koddyrae
 	 * User inputs a file name and if it exists, it will load a Player arraylist
 	 * @param filename,  user inputted filename
 	 * @throws IOException
-	 * @author Koddyrae
+	 *
 	 */
 	public void loadTextFile(String filename) throws IOException {
 		File file = new File(filename);
@@ -55,7 +57,6 @@ public class GameManager {
 		if (file.exists()) {
 			FileReader fr = new FileReader(filename);
 			BufferedReader br = new BufferedReader(fr);
-			ArrayList<Player> listOfPlayers = new ArrayList<>();
 			
 			String line;
 			
@@ -67,8 +68,35 @@ public class GameManager {
 			}
 		}
 		else {
-			System.out.println("No file to load"); //temporary until know if we have to create the file or not
-		}
+			File newFile = new File("res/CasinoInfo.txt");
+			newFile.createNewFile();
+		}	
 		
 	}
+	
+	/**
+	 * @author Koddyrae
+	 * Method used to save the listOfPlayers arraylist to a text file called CasinoInfo in the res folder
+	 * @throws IOException
+	 *
+	 */
+	public void saveTextFile() throws IOException {
+		try {
+			FileOutputStream fos = new FileOutputStream("res/CasinoInfo.txt");
+			PrintWriter pw = new PrintWriter(fos);
+			
+			for (Player player : listOfPlayers) {
+				pw.println(player.toString());
+				
+			}
+			pw.close();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	
 }

@@ -45,4 +45,8 @@ public class Player {
 	public int getWins() {
 		return numOfWins;
 	}
+	
+	public String toString() {
+		return name + "," + balance + "," + numOfWins;
+	}
 }
