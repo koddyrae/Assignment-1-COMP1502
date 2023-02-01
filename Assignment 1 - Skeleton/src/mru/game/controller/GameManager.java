@@ -2,6 +2,7 @@ package mru.game.controller;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import mru.game.model.Player;
 
@@ -96,6 +97,43 @@ public class GameManager {
 			e.printStackTrace();
 		}
 
+	}
+	
+	/**
+	 * @author Koddyrae
+	 * Method to return the player(s) in the arraylist by name
+	 * @param name user inputted search name
+	 * @return name that contains the user input
+	 */
+	public String findPlayersByName(String name) {
+		String result = "";
+		
+		for (int i = 0; i < listOfPlayers.size(); i++) {
+			if (listOfPlayers.get(i).getName().toUpperCase().contains(name.toUpperCase())) {
+				result += listOfPlayers.get(i).toString() + " ";
+			}
+		}
+		return result;
+	}
+	
+	/**
+	 * @author Koddyrae
+	 * Method to return the top player(s) in the arraylist by wins
+	 * @return top player(s) based on order from arraylist
+	 */
+	public String findTopPlayers() {
+		String result = "";
+		
+		Player maxPlayer = listOfPlayers.stream().max(Comparator.comparingInt(Player::getWins)).get();
+		
+		for(int i = 0; i < listOfPlayers.size(); i++) {
+			if (maxPlayer.getWins() == listOfPlayers.get(i).getWins()) {
+				result += listOfPlayers.get(i).getName() + " " + listOfPlayers.get(i).getWins() + " ";
+			}
+		}
+		
+		return result;
+		
 	}
 	
 	
