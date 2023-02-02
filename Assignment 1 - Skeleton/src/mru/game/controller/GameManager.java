@@ -124,11 +124,17 @@ public class GameManager {
 	public String findTopPlayers() {
 		String result = "";
 		
-		Player maxPlayer = listOfPlayers.stream().max(Comparator.comparingInt(Player::getWins)).get();
+		int max = listOfPlayers.get(0).getWins();
 		
 		for(int i = 0; i < listOfPlayers.size(); i++) {
-			if (maxPlayer.getWins() == listOfPlayers.get(i).getWins()) {
-				result += listOfPlayers.get(i).getName() + " " + listOfPlayers.get(i).getWins() + " ";
+			if (max < listOfPlayers.get(i).getWins()) {
+				max = listOfPlayers.get(i).getWins();
+			}
+		}
+		
+		for (int j = 0; j < listOfPlayers.size(); j++) {
+			if (max == listOfPlayers.get(j).getWins()) {
+				result += listOfPlayers.get(j).getName() + " " + listOfPlayers.get(j).getWins() + " ";
 			}
 		}
 		
