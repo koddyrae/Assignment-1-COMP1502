@@ -16,7 +16,7 @@ public class GameManager {
 	 * A method to find the top players
 	 * Depending on your designing technique you may need and you can add more methods here 
 	 */
-	ArrayList<Player> listOfPlayers = new ArrayList<>();
+	ArrayList<Player> listOfPlayers;
 	
 	public GameManager() {
 		// TODO: implement the GameManager constructor.
@@ -54,6 +54,7 @@ public class GameManager {
 	 */
 	public void loadTextFile(String filename) throws IOException {
 		File file = new File(filename);
+		listOfPlayers = new ArrayList<>();
 		
 		if (file.exists()) {
 			FileReader fr = new FileReader(filename);
