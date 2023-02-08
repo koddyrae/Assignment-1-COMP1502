@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 
 import mru.game.model.Player;
+import mru.game.view.AppMenu;
 
 public class GameManager {
 	
@@ -17,33 +18,62 @@ public class GameManager {
 	 * Depending on your designing technique you may need and you can add more methods here 
 	 */
 	ArrayList<Player> listOfPlayers;
+	AppMenu appMenu;
+	
 	
 	public GameManager() {
 		// TODO: implement the GameManager constructor.
 		// Main loop and main menu
+		listOfPlayers = new ArrayList<>();
 		do {
 			// Game menu triggered.
 			
-			// TODO: player must be initialized as new or with existing property values.
-			Gambler player = new Gambler("Player", 100, 0);
+			char choice = appMenu.showMainMenu().toLowerCase().charAt(0);
 			
-			PuntoBancoGame currentGame = new PuntoBancoGame(player);
-			
-			// Game/betting menu and game loop
-			boolean playAgainFlag = true;
-			do {
-				// Betting menu triggered.
-				
-				char betChoice = 'P'; // TODO: must be validated!
-				int betAmount = 0; // TODO: Must be validated!
-				currentGame.playRound(betChoice, betAmount);
-				
-				// TODO: return to betting menu.
-			} while (playAgainFlag); // TODO: change the condition.
-			
-			
-		} while (true); // TODO: change the condition.
+			switch (choice) {
+				case 'p':
+					// TODO: player must be initialized as new or with existing property values.
+					Gambler player = new Gambler("Player", 100, 0);
+					
+					PuntoBancoGame currentGame = new PuntoBancoGame(player);
+					
+					// Game/betting menu and game loop
+					boolean playAgainFlag = true;
+					do {
+						// Betting menu triggered.
+						
+						char betChoice = 'P'; // TODO: must be validated!
+						int betAmount = 0; // TODO: Must be validated!
+						currentGame.playRound(betChoice, betAmount);
+						
+						// TODO: return to betting menu.
+					} while (playAgainFlag); // TODO: change the condition.	
+				break;
+				case 's':
+				case 'e':
+			}
+		} while (true);
 	}
+			
+//			// TODO: player must be initialized as new or with existing property values.
+//			Gambler player = new Gambler("Player", 100, 0);
+//			
+//			PuntoBancoGame currentGame = new PuntoBancoGame(player);
+//			
+//			// Game/betting menu and game loop
+//			boolean playAgainFlag = true;
+//			do {
+//				// Betting menu triggered.
+//				
+//				char betChoice = 'P'; // TODO: must be validated!
+//				int betAmount = 0; // TODO: Must be validated!
+//				currentGame.playRound(betChoice, betAmount);
+//				
+//				// TODO: return to betting menu.
+//			} while (playAgainFlag); // TODO: change the condition.
+//			
+//			
+//		} while (true); // TODO: change the condition.
 	
 	/**
 	 * @author Koddyrae
@@ -54,7 +84,6 @@ public class GameManager {
 	 */
 	public void loadTextFile(String filename) throws IOException {
 		File file = new File(filename);
-		listOfPlayers = new ArrayList<>();
 		
 		if (file.exists()) {
 			FileReader fr = new FileReader(filename);
