@@ -2,7 +2,6 @@ package mru.game.controller;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import mru.game.model.Player;
 import mru.game.view.AppMenu;
@@ -50,7 +49,30 @@ public class GameManager {
 					} while (playAgainFlag); // TODO: change the condition.	
 				break;
 				case 's':
+					char switchChoice = appMenu.searchMenu().toLowerCase().charAt(0);
+					switch (switchChoice) {
+						case 't':
+							findTopPlayers();
+							break;
+						case 'n':
+							String name = appMenu.promptName(); //just need to add the formatting
+							findPlayersByName(name);
+							break;
+						case 'b':
+							appMenu.showMainMenu();
+							break;
+					}
+					
+					
 				case 'e':
+				try {
+					saveTextFile();
+					System.out.println("Saving...");
+					System.out.println("Done! Please visit us again");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		} while (true);
 	}

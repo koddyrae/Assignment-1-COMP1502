@@ -34,4 +34,9 @@ public class AppMenu {
 		return choice;
 	}
 	
+	public String promptName() {
+		System.out.println("What is your name:");
+		String choice = key.nextLine();
+		return choice;
+	}
 }
