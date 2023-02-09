@@ -135,7 +135,7 @@ public class PuntoBancoGame {
 	}
 	
 	/**
-	 * 
+	 * @author Bryce 'cybeR' Carson
 	 * @param numberOfCards The number of cards to get from the deck currently in play.
 	 * @return ArrayList <Card> An ArrayList of Card(s) is returned, all of which can be added to a Gambler's hand.
 	 */
