@@ -10,7 +10,7 @@ public class Gambler {
     final private String BANKERS_NAME = "BANKER";
 
     private String name = BANKERS_NAME;
-    private int balance = 0;
+    public int balance = 0;
     private int numberOfWins = 0;
 
     public ArrayList <Card> hand;
@@ -19,10 +19,16 @@ public class Gambler {
         this.balance = BANKERS_BALANCE;
     }
 
-    public Gambler (String name, int balance, int numberOfWins) {
+    public Gambler (String name) {
         this.name = name;
-        this.balance = balance;
-        this.numberOfWins = numberOfWins;
+        this.balance = 100;
+        this.numberOfWins = 0;
+    }
+
+    public Gambler (Player player) {
+        this.name = player.getName();
+        this.balance = player.getBalance();
+        this.numberOfWins = player.getWins();
     }
 
     public int scoreHand() {
@@ -45,5 +51,22 @@ public class Gambler {
         this.numberOfWins++;
     }
 
+    public String getName() {
+        return name;
+    }
 
-}
+    public Int getBalance() {
+        return balance;
+    }
+
+    public Int getWins() {
+        return numberOfWins;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public void setWins(int wins) {
+        this.numberOfWins = wins;
+    }
