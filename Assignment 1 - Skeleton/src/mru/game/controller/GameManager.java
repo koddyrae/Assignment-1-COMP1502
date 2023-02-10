@@ -84,73 +84,18 @@ public class GameManager {
 			}
 
 			else if (choice == 'e') {
-				try {
-					saveTextFile();
-					System.out.println("Saving...");
-					System.out.println("Done! Please visit us again");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				try {
+//					//saveTextFile();
+//					System.out.println("Saving...");
+//					System.out.println("Done! Please visit us again");
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 				loopControl = false;
 				break; //im not sure if i need this lol
 			}
 		} while (loopControl);
-	}
-
-
-	/**
-	 * @author Koddyrae User inputs a file name and if it exists, it will load a
-	 *         Player arraylist
-	 * @param filename, user inputted filename
-	 * @throws IOException
-	 *
-	 */
-	public void loadTextFile(String filename) throws IOException {
-		File file = new File(filename);
-
-		if (file.exists()) {
-			FileReader fr = new FileReader(filename);
-			BufferedReader br = new BufferedReader(fr);
-
-			String line;
-
-			while ((line = br.readLine()) != null) {
-				String[] dataLine = line.split(",");
-				Player player = new Player((dataLine[0]), (Integer.parseInt(dataLine[1])),
-						(Integer.parseInt(dataLine[2])));
-				listOfPlayers.add(player);
-
-			}
-		} else {
-			File newFile = new File("res/CasinoInfo.txt");
-			newFile.createNewFile();
-		}
-
-	}
-
-	/**
-	 * @author Koddyrae Method used to save the listOfPlayers arraylist to a text
-	 *         file called CasinoInfo in the res folder
-	 * @throws IOException
-	 *
-	 */
-	public void saveTextFile() throws IOException {
-		try {
-			FileOutputStream fos = new FileOutputStream("res/CasinoInfo.txt");
-			PrintWriter pw = new PrintWriter(fos);
-
-			for (Player player : listOfPlayers) {
-				pw.println(player.toString());
-
-			}
-			pw.close();
-			fos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 	/**
