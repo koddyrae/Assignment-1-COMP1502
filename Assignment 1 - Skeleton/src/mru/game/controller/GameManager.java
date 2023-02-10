@@ -22,6 +22,7 @@ public class GameManager {
 	public GameManager() {
 		// TODO: implement the GameManager constructor.
 		// Main loop and main menu
+		appMenu = new AppMenu();
 		listOfPlayers = new ArrayList<>();
 		boolean loopControl = true;
 
