@@ -2,6 +2,8 @@ package mru.game.controller;
 
 import java.util.ArrayList;
 
+import mru.game.model.Player;
+
 /**
  * @author Bryce 'cybeR' Carson
  */
@@ -19,10 +21,16 @@ public class Gambler {
         this.balance = BANKERS_BALANCE;
     }
 
-    public Gambler (String name, int balance, int numberOfWins) {
+    public Gambler (String name) {
         this.name = name;
-        this.balance = balance;
-        this.numberOfWins = numberOfWins;
+        this.balance = 100;
+        this.numberOfWins = 0;
+    }
+
+    public Gambler (Player player) {
+        this.name = player.getName();
+        this.balance = player.getBalance();
+        this.numberOfWins = player.getWins();
     }
 
     public int scoreHand() {
@@ -45,5 +53,23 @@ public class Gambler {
         this.numberOfWins++;
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public int getBalance() {
+        return balance;
+    }
+
+    public int getWins() {
+        return numberOfWins;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public void setWins(int wins) {
+        this.numberOfWins = wins;
+    }
 }

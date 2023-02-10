@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import mru.game.model.Player;
 import mru.game.view.AppMenu;
+import mru.game.model.Record;
 
 public class GameManager {
 
@@ -15,24 +16,27 @@ public class GameManager {
 	 * search for a player based their name A method to find the top players
 	 * Depending on your designing technique you may need and you can add more
 	 * methods here
+	 * 
 	 */
-	ArrayList<Player> listOfPlayers;
+	
 	AppMenu appMenu;
 
-	public GameManager() {
+	public GameManager() throws IOException {
 		// TODO: implement the GameManager constructor.
 		// Main loop and main menu
 		appMenu = new AppMenu();
-		listOfPlayers = new ArrayList<>();
 		boolean loopControl = true;
-
+		
+		final String FILE_PATH = "res/CasinoInfo.txt";
+		Record database = new Record(FILE_PATH);
+		
 		char choice = appMenu.showMainMenu();
 		mainLoop: do {
 			if (choice == 'p') {
 				// game loop
 				do {
 					// TODO: player must be initialized as new or with existing property values.
-					Gambler player = new Gambler("Player", 100, 0);
+					Gambler player = new Gambler("Player");
 
 					PuntoBancoGame currentGame = new PuntoBancoGame(player);
 
