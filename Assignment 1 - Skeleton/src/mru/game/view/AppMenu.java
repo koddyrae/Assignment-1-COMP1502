@@ -20,7 +20,8 @@ public class AppMenu {
 		System.out.println("\t (S) Search");
 		System.out.println("\t (E) Exit");
 		System.out.println("\nEnter a choice: ");
-		char choice = key.nextLine().toLowerCase().charAt(0);		
+		char choice = key.nextLine().toLowerCase().charAt(0);
+		key.nextLine();
 		return choice;
 	}
 	
@@ -31,6 +32,7 @@ public class AppMenu {
 		System.out.println("\t(B) Back to main menu");
 		System.out.println("\nEnter a choice: ");
 		char choice = key.nextLine().toLowerCase().charAt(0);		
+		key.nextLine();
 		return choice;
 	}
 	
@@ -41,6 +43,7 @@ public class AppMenu {
 		System.out.println("\t(T) Tie Game");
 		System.out.println("\nEnter a choice: ");
 		char choice = key.nextLine().toLowerCase().charAt(0);		
+		key.nextLine();
 		return choice;
 	}
 	
@@ -48,24 +51,36 @@ public class AppMenu {
 		String[] splittedLine = results.split(",");
 		System.out.printf("\t- TOP PLAYERS -\n");
 		System.out.println("|=============|=============|");
-		System.out.println("|=NAME========|=WINS========|");
+		System.out.println("|=NAME========|=# WINS======|");
 		for (int i = 0; i < splittedLine.length; i+=2) {
 			System.out.println("| " + splittedLine[i] + "| " + splittedLine[i+1] + " |");
 			System.out.println("|-------------|------------|");
 		}
 	}
 	
+	public void printPlayersByName(String results) {
+		String[] splittedLine = results.split(",");
+		System.out.printf("\t- PLAYER INFO -\n");
+		System.out.println("|=============|=============|=============|");
+		System.out.println("|=NAME========|=BALANCE=====|=# WINS======|");
+		for (int i = 0; i < splittedLine.length; i+=3) {
+			System.out.println("| " + splittedLine[i] + "| " + splittedLine[i+1] + " | " + splittedLine[i+2] + " |");
+			System.out.println("|-------------|------------|");
+		}
+	}
 
 	public char continueToMainMenu() {
 		System.out.println("Press \"Enter\" to Continue...");
 		key.nextLine();
 		char choice = showMainMenu();
+		key.nextLine();
 		return choice;
 	}
 	
 	public String promptName() {
 		System.out.println("Enter your name: ");
 		String name = key.nextLine();
+		key.nextLine();
 		return name;
 	}
 }
