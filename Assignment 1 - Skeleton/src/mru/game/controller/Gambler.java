@@ -10,7 +10,7 @@ public class Gambler {
     final private String BANKERS_NAME = "BANKER";
 
     private String name = BANKERS_NAME;
-    private int balance = 0;
+    public int balance = 0;
     private int numberOfWins = 0;
 
     public ArrayList <Card> hand;

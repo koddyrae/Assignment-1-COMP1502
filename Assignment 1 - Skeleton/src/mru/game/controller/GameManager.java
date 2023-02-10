@@ -50,7 +50,7 @@ public class GameManager {
 
 				} while (true); // TODO: change the condition.
 			}
-			if (choice == 's') {
+			else if (choice == 's') {
 				char searchChoice = appMenu.searchMenu();
 
 				if (searchChoice == 't') {
@@ -83,7 +83,7 @@ public class GameManager {
 				}
 			}
 
-			if (choice == 'e') {
+			else if (choice == 'e') {
 				try {
 					saveTextFile();
 					System.out.println("Saving...");
