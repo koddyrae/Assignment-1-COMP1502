@@ -12,7 +12,7 @@ public class AppDriver {
         /* NOTE: there is no need to assign this to a global variable because the
            object will not be reused. It is an anonymous object which is the main
            program loop. */
-        new GameManager();
+        GameManager gm = new GameManager();
     }
 
 }
