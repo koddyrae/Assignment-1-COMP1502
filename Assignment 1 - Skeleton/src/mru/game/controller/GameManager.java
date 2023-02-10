@@ -58,13 +58,14 @@ public class GameManager {
 				char searchChoice = appMenu.searchMenu();
 
 				if (searchChoice == 't') {
-					String[] splittedLine = database.findTopPlayers().split(",");
-					System.out.printf("\t- TOP PLAYERS -\n");
-					System.out.println("|=============|=============|");
-					for (int i = 0; i < splittedLine.length; i+=2) {
-						System.out.println("| " + splittedLine[i] + "| " + splittedLine[i+1] + " |");
-						System.out.println("|-------------|------------|");
-					}
+					appMenu.printTopPlayers(database.findTopPlayers());
+//					String[] splittedLine = database.findTopPlayers().split(",");
+//					System.out.printf("\t- TOP PLAYERS -\n");
+//					System.out.println("|=============|=============|");
+//					for (int i = 0; i < splittedLine.length; i+=2) {
+//						System.out.println("| " + splittedLine[i] + "| " + splittedLine[i+1] + " |");
+//						System.out.println("|-------------|------------|");
+//					}
 
 					choice = appMenu.continueToMainMenu();
 				}

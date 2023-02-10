@@ -44,6 +44,17 @@ public class AppMenu {
 		return choice;
 	}
 	
+	public void printTopPlayers(String results) {
+		String[] splittedLine = results.split(",");
+		System.out.printf("\t- TOP PLAYERS -\n");
+		System.out.println("|=============|=============|");
+		System.out.println("|=NAME========|=WINS========|");
+		for (int i = 0; i < splittedLine.length; i+=2) {
+			System.out.println("| " + splittedLine[i] + "| " + splittedLine[i+1] + " |");
+			System.out.println("|-------------|------------|");
+		}
+	}
+	
 
 	public char continueToMainMenu() {
 		System.out.println("Press \"Enter\" to Continue...");
