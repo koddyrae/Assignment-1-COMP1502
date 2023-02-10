@@ -13,81 +13,11 @@ public class GameManager {
 
     final String FILENAME = "res/CasinoInfo.txt";
 
-    public GameManager() {
+    public GameManager() throws IOException {
 
         // Load the database or create it.
         Record database = new Record(FILENAME);
-
-        do {
-            // Game menu triggered.
-            char choice = appMenu.showMainMenu().toLowerCase().charAt(0);
-            switch (choice) {
-            case 'p':
-                // TODO: player must be initialized as new or with existing property values.
-                Gambler player = new Gambler("Player", 100, 0);
-
-                PuntoBancoGame currentGame = new PuntoBancoGame(player);
-
-                // Game/betting menu and game loop
-                boolean playAgainFlag = true;
-                do {
-                    // Betting menu triggered.
-
-                    char betChoice = 'P'; // TODO: must be validated!
-                    int betAmount = 0; // TODO: Must be validated!
-                    currentGame.playRound(betChoice, betAmount);
-
-                    // TODO: return to betting menu.
-                } while (playAgainFlag); // TODO: change the condition.
-                break;
-            case 's':
-                char switchChoice = appMenu.searchMenu().toLowerCase().charAt(0);
-                switch (switchChoice) {
-                case 't':
-                    findTopPlayers();
-                    break;
-                case 'n':
-                    String name = appMenu.promptName(); //just need to add the formatting
-                    findPlayersByName(name);
-                    break;
-                case 'b':
-                    appMenu.showMainMenu();
-                    break;
-                }
-
-
-            case 'e':
-                try {
-                    saveTextFile();
-                    System.out.println("Saving...");
-                    System.out.println("Done! Please visit us again");
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-        } while (true);
     }
-
-    //			// TODO: player must be initialized as new or with existing property values.
-    //			Gambler player = new Gambler("Player", 100, 0);
-    //
-    //			PuntoBancoGame currentGame = new PuntoBancoGame(player);
-    //
-    //			// Game/betting menu and game loop
-    //			boolean playAgainFlag = true;
-    //			do {
-    //				// Betting menu triggered.
-    //
-    //				char betChoice = 'P'; // TODO: must be validated!
-    //				int betAmount = 0; // TODO: Must be validated!
-    //				currentGame.playRound(betChoice, betAmount);
-    //
-    //				// TODO: return to betting menu.
-    //			} while (playAgainFlag); // TODO: change the condition.
-    //
-    //
-    //		} while (true); // TODO: change the condition.
 
 
     /**
