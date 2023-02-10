@@ -98,62 +98,6 @@ public class GameManager {
 		} while (loopControl);
 	}
 
-//        do {
-//            // Game menu triggered.
-//
-//            char choice = appMenu.takeChoice().toLowerCase().charAt(0);
-//
-//            switch (choice) {
-//            case 'p':
-//                // TODO: player must be initialized as new or with existing property values.
-//                Gambler player = new Gambler("Player", 100, 0);
-//
-//                PuntoBancoGame currentGame = new PuntoBancoGame(player);
-//
-//                // Game/betting menu and game loop
-//                boolean playAgainFlag = true;
-//                do {
-//                    // Betting menu triggered.
-//                	
-//                	appMenu.gameMenu();
-//                	
-//
-//                    char betChoice = 'P'; // TODO: must be validated!
-//                    int betAmount = 0; // TODO: Must be validated!
-//                    currentGame.playRound(betChoice, betAmount);
-//
-//                    // TODO: return to betting menu.
-//                } while (playAgainFlag); // TODO: change the condition.
-//            case 's':
-//                char switchChoice = appMenu.takeChoice().toLowerCase().charAt(0);
-//                switch (switchChoice) {
-//                case 't':
-//                    findTopPlayers();
-//                    appMenu.continueToMainMenu();
-//                    break;
-//                case 'n':
-//                	System.out.println("Enter your name: ");
-//                    String name = appMenu.takeChoice();
-//                    findPlayersByName(name);
-//                    appMenu.continueToMainMenu();
-//                    break;
-//                case 'b':
-//                    appMenu.showMainMenu();
-//                    break;
-//                }
-//
-//
-//            case 'e':
-//                try {
-//                    saveTextFile();
-//                    System.out.println("Saving...");
-//                    System.out.println("Done! Please visit us again");
-//                } catch (IOException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-//            }
-//        } while (true);
 
 	/**
 	 * @author Koddyrae User inputs a file name and if it exists, it will load a
