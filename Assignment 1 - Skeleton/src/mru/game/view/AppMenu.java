@@ -14,14 +14,12 @@ public class AppMenu {
 		key = new Scanner(System.in);
 	}
 	
-	public String showMainMenu() {
+	public void showMainMenu() {
 		System.out.println("Select One of these Options: ");
 		System.out.println("\n\t (P) Play game");
 		System.out.println("\t (S) Search");
 		System.out.println("\t (E) Exit");
 		System.out.println("\nEnter a choice: ");
-		String choice = key.nextLine();
-		return choice;
 	}
 	
 	public String searchMenu() {
@@ -30,12 +28,9 @@ public class AppMenu {
 		System.out.println("\t(N) Looking for a Name");
 		System.out.println("\t(B) Back to main menu");
 		System.out.println("\nEnter a choice: ");
-		String choice = key.nextLine();
-		return choice;
 	}
 	
-	public String promptName() {
-		System.out.println("What is your name:");
+	public String takeChoice() {
 		String choice = key.nextLine();
 		return choice;
 	}

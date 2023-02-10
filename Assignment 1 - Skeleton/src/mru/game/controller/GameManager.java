@@ -27,7 +27,7 @@ public class GameManager {
         do {
             // Game menu triggered.
 
-            char choice = appMenu.showMainMenu().toLowerCase().charAt(0);
+            char choice = appMenu.takeChoice().toLowerCase().charAt(0);
 
             switch (choice) {
             case 'p':
@@ -47,15 +47,15 @@ public class GameManager {
 
                     // TODO: return to betting menu.
                 } while (playAgainFlag); // TODO: change the condition.
-                break;
             case 's':
-                char switchChoice = appMenu.searchMenu().toLowerCase().charAt(0);
+                char switchChoice = appMenu.takeChoice().toLowerCase().charAt(0);
                 switch (switchChoice) {
                 case 't':
                     findTopPlayers();
                     break;
                 case 'n':
-                    String name = appMenu.promptName(); //just need to add the formatting
+                	System.out.println("Enter your name: ");
+                    String name = appMenu.takeChoice();
                     findPlayersByName(name);
                     break;
                 case 'b':
