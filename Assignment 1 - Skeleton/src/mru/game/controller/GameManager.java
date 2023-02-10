@@ -53,14 +53,26 @@ public class GameManager {
 				char searchChoice = appMenu.searchMenu();
 
 				if (searchChoice == 't') {
-					System.out.println("\t- Top players - ");
-					findTopPlayers();
+					String[] splittedLine = findTopPlayers().split(",");
+					System.out.printf("\t- TOP PLAYERS -\n");
+					System.out.println("|=============|=============|");
+					for (int i = 0; i < splittedLine.length; i+=2) {
+						System.out.println("| " + splittedLine[i] + "| " + splittedLine[i+1] + " |");
+						System.out.println("|-------------|------------|");
+					}
+
 					choice = appMenu.continueToMainMenu();
 				}
 
 				else if (searchChoice == 'n') {
 					String searchName = appMenu.promptName();
-					findPlayersByName(searchName);
+					String[] splittedLine = findPlayersByName(searchName).split(",");
+					System.out.printf("\t- TOP PLAYERS -\n");
+					System.out.println("|=============|=============|");
+					for (int i = 0; i < splittedLine.length; i+=3) {
+						System.out.println("| " + splittedLine[i] + "| " + splittedLine[i+1] + " | " + splittedLine[i+2] + " |");
+						System.out.println("|-------------|------------|");
+					}
 					choice = appMenu.continueToMainMenu();
 				}
 
@@ -206,7 +218,7 @@ public class GameManager {
 
 		for (int i = 0; i < listOfPlayers.size(); i++) {
 			if (listOfPlayers.get(i).getName().toUpperCase().contains(name.toUpperCase())) {
-				result += listOfPlayers.get(i).toString() + " ";
+				result += listOfPlayers.get(i).toString() + ",";
 			}
 		}
 		return result;
@@ -229,7 +241,7 @@ public class GameManager {
 
 		for (int j = 0; j < listOfPlayers.size(); j++) {
 			if (max == listOfPlayers.get(j).getWins()) {
-				result += listOfPlayers.get(j).getName() + " " + listOfPlayers.get(j).getWins() + " ";
+				result += listOfPlayers.get(j).getName() + "," + listOfPlayers.get(j).getWins() + ",";
 			}
 		}
 
