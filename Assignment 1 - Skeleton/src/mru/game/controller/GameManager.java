@@ -58,7 +58,7 @@ public class GameManager {
 				char searchChoice = appMenu.searchMenu();
 
 				if (searchChoice == 't') {
-					String[] splittedLine = findTopPlayers().split(",");
+					String[] splittedLine = database.findTopPlayers().split(",");
 					System.out.printf("\t- TOP PLAYERS -\n");
 					System.out.println("|=============|=============|");
 					for (int i = 0; i < splittedLine.length; i+=2) {
@@ -71,7 +71,7 @@ public class GameManager {
 
 				else if (searchChoice == 'n') {
 					String searchName = appMenu.promptName();
-					String[] splittedLine = findPlayersByName(searchName).split(",");
+					String[] splittedLine = database.findPlayersByName(searchName).split(",");
 					System.out.printf("\t- PLAYER INFO -\n");
 					System.out.println("|=============|=============|");
 					for (int i = 0; i < splittedLine.length; i+=3) {
@@ -88,14 +88,9 @@ public class GameManager {
 			}
 
 			else if (choice == 'e') {
-//				try {
-//					//saveTextFile();
-//					System.out.println("Saving...");
-//					System.out.println("Done! Please visit us again");
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+				database.saveTextFile();
+				System.out.println("Saving...");
+				System.out.println("Done! Please visit us again");
 				loopControl = false;
 				break; //im not sure if i need this lol
 			}
