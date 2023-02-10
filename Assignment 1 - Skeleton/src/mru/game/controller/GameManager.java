@@ -53,7 +53,7 @@ public class GameManager {
 				char searchChoice = appMenu.searchMenu();
 
 				if (searchChoice == 't') {
-					System.out.println("Top players");
+					System.out.println("\t- Top players - ");
 					findTopPlayers();
 					choice = appMenu.continueToMainMenu();
 				}
