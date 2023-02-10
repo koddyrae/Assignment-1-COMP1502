@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import mru.game.model.Player;
 import mru.game.view.AppMenu;
+import mru.game.model.Record;
 
 public class GameManager {
 
@@ -15,24 +16,27 @@ public class GameManager {
 	 * search for a player based their name A method to find the top players
 	 * Depending on your designing technique you may need and you can add more
 	 * methods here
+	 * 
 	 */
-	ArrayList<Player> listOfPlayers;
+	
 	AppMenu appMenu;
 
-	public GameManager() {
+	public GameManager() throws IOException {
 		// TODO: implement the GameManager constructor.
 		// Main loop and main menu
 		appMenu = new AppMenu();
-		listOfPlayers = new ArrayList<>();
 		boolean loopControl = true;
-
+		
+		final String FILE_PATH = "res/CasinoInfo.txt";
+		Record database = new Record(FILE_PATH);
+		
 		char choice = appMenu.showMainMenu();
 		mainLoop: do {
 			if (choice == 'p') {
 				// game loop
 				do {
 					// TODO: player must be initialized as new or with existing property values.
-					Gambler player = new Gambler("Player", 100, 0);
+					Gambler player = new Gambler("Player");
 
 					PuntoBancoGame currentGame = new PuntoBancoGame(player);
 
@@ -84,73 +88,18 @@ public class GameManager {
 			}
 
 			else if (choice == 'e') {
-				try {
-					saveTextFile();
-					System.out.println("Saving...");
-					System.out.println("Done! Please visit us again");
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				try {
+//					//saveTextFile();
+//					System.out.println("Saving...");
+//					System.out.println("Done! Please visit us again");
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 				loopControl = false;
 				break; //im not sure if i need this lol
 			}
 		} while (loopControl);
-	}
-
-
-	/**
-	 * @author Koddyrae User inputs a file name and if it exists, it will load a
-	 *         Player arraylist
-	 * @param filename, user inputted filename
-	 * @throws IOException
-	 *
-	 */
-	public void loadTextFile(String filename) throws IOException {
-		File file = new File(filename);
-
-		if (file.exists()) {
-			FileReader fr = new FileReader(filename);
-			BufferedReader br = new BufferedReader(fr);
-
-			String line;
-
-			while ((line = br.readLine()) != null) {
-				String[] dataLine = line.split(",");
-				Player player = new Player((dataLine[0]), (Integer.parseInt(dataLine[1])),
-						(Integer.parseInt(dataLine[2])));
-				listOfPlayers.add(player);
-
-			}
-		} else {
-			File newFile = new File("res/CasinoInfo.txt");
-			newFile.createNewFile();
-		}
-
-	}
-
-	/**
-	 * @author Koddyrae Method used to save the listOfPlayers arraylist to a text
-	 *         file called CasinoInfo in the res folder
-	 * @throws IOException
-	 *
-	 */
-	public void saveTextFile() throws IOException {
-		try {
-			FileOutputStream fos = new FileOutputStream("res/CasinoInfo.txt");
-			PrintWriter pw = new PrintWriter(fos);
-
-			for (Player player : listOfPlayers) {
-				pw.println(player.toString());
-
-			}
-			pw.close();
-			fos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 
 	/**
