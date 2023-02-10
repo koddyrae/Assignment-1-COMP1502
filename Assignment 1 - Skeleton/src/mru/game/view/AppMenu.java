@@ -20,8 +20,7 @@ public class AppMenu {
 		System.out.println("\t (S) Search");
 		System.out.println("\t (E) Exit");
 		System.out.println("\nEnter a choice: ");
-		
-		char choice = key.nextLine().charAt(0);		
+		char choice = key.nextLine().toLowerCase().charAt(0);		
 		return choice;
 	}
 	
@@ -31,7 +30,7 @@ public class AppMenu {
 		System.out.println("\t(N) Looking for a Name");
 		System.out.println("\t(B) Back to main menu");
 		System.out.println("\nEnter a choice: ");
-		char choice = key.nextLine().charAt(0);		
+		char choice = key.nextLine().toLowerCase().charAt(0);		
 		return choice;
 	}
 	
@@ -41,7 +40,7 @@ public class AppMenu {
 		System.out.println("\t(B) Banker Wins");
 		System.out.println("\t(T) Tie Game");
 		System.out.println("\nEnter a choice: ");
-		char choice = key.nextLine().charAt(0);		
+		char choice = key.nextLine().toLowerCase().charAt(0);		
 		return choice;
 	}
 	

@@ -68,7 +68,7 @@ public class GameManager {
 				else if (searchChoice == 'n') {
 					String searchName = appMenu.promptName();
 					String[] splittedLine = findPlayersByName(searchName).split(",");
-					System.out.printf("\t- TOP PLAYERS -\n");
+					System.out.printf("\t- PLAYER INFO -\n");
 					System.out.println("|=============|=============|");
 					for (int i = 0; i < splittedLine.length; i+=3) {
 						System.out.println("| " + splittedLine[i] + "| " + splittedLine[i+1] + " | " + splittedLine[i+2] + " |");
