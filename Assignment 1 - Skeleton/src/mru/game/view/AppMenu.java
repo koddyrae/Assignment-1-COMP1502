@@ -2,6 +2,10 @@ package mru.game.view;
 
 import java.util.Scanner;
 
+/**
+ * @author koddy
+ * Class for UI
+ */
 public class AppMenu {
 
 	/**
@@ -14,6 +18,10 @@ public class AppMenu {
 		key = new Scanner(System.in);
 	}
 	
+	/**
+	 * Method to print main menu
+	 * @return choice user choice to continue in mainmenu
+	 */
 	public char showMainMenu() {
 		System.out.println("Select One of these Options: ");
 		System.out.println("\n\t (P) Play game");
@@ -25,6 +33,10 @@ public class AppMenu {
 		return choice;
 	}
 	
+	/**
+	 * Method to print search menu
+	 * @return choice user choice to continue in submenu
+	 */
 	public char searchMenu() {
 		System.out.println("Select One of these Options: ");
 		System.out.println("\n\t(T) Top player (Most number of wins)");
@@ -36,7 +48,11 @@ public class AppMenu {
 		return choice;
 	}
 	
-	public char gameMenu() {
+	/**
+	 * Method to print starting game menu
+	 * @return choice user choice to continue in game menu
+	 */
+	public char bettingMenu() {
 		System.out.println("Who do you want to bet on: ");
 		System.out.println("\n\t(P) Player Wins");
 		System.out.println("\t(B) Banker Wins");
@@ -47,6 +63,10 @@ public class AppMenu {
 		return choice;
 	}
 	
+	/**
+	 * Method to print top players
+	 * @param results results from findTopPlayers method in Record
+	 */
 	public void printTopPlayers(String results) {
 		String[] splittedLine = results.split(",");
 		System.out.printf("\t- TOP PLAYERS -\n");
@@ -58,6 +78,10 @@ public class AppMenu {
 		}
 	}
 	
+	/**
+	 * Method to print players by name
+	 * @param results results from findPlayersByName method in Record
+	 */
 	public void printPlayersByName(String results) {
 		String[] splittedLine = results.split(",");
 		System.out.printf("\t- PLAYER INFO -\n");
@@ -69,6 +93,10 @@ public class AppMenu {
 		}
 	}
 
+	/**
+	 * Method to allow player to return back to main menu
+	 * @return choice user choice to continue in main menu
+	 */
 	public char continueToMainMenu() {
 		System.out.println("Press \"Enter\" to Continue...");
 		key.nextLine();
@@ -77,10 +105,66 @@ public class AppMenu {
 		return choice;
 	}
 	
+	/**
+	 * Method to return user to main menu after invalid input
+	 * @return choice user choice when back at main menu
+	 */
+	public char invalidInputToMain() {
+		System.out.println("Invalid Input...");
+		System.out.println("Returning to Main Menu");
+		char choice = showMainMenu();
+		return choice;
+	}
+	
+	/**
+	 * Method to ask user to input a name
+	 * @return name user inputted name 
+	 */
 	public String promptName() {
 		System.out.println("Enter your name: ");
 		String name = key.nextLine();
 		key.nextLine();
 		return name;
 	}
+	
+	/**
+	 * Method to ask user for bet amount
+	 * @return bet amount
+	 */
+	public int promptWager() {
+		System.out.println("How much do you want to bet this round?");
+		int bet = key.nextInt();
+		key.nextLine();
+		return bet;
+	}
+	
+	/**
+	 * Method to ask user to play again
+	 * @return boolean on if player wants to play again or not
+	 */
+	public boolean promptPlayAgain() {
+		System.out.println("Do you want to play again (Y/N)");
+		boolean play = false;
+		char choice = key.nextLine().charAt(0);
+		if (choice == 'Y') {
+			play = true;
+		}
+		key.nextLine();
+		return play;
+	}
+	
+	/**
+	 * Method to welcome player to game
+	 * @param name name of gambler
+	 * @param balance balance of gambler
+	 * @param returningPlayer checks player is new or not
+	 */
+	public void welcomeMessage(String name, int balance, boolean returningPlayer) {
+		String maybeBack = returningPlayer ? "back " : "";
+		String maybeNew = returningPlayer ? "initial " : "";
+		System.out.println("**************************************************");
+		System.out.println("***  Welcome " + maybeBack + name + "   --- Your" + maybeNew + "balance is: " + balance + "$    ***");
+		System.out.println("**************************************************");
+	}
+	
 }
