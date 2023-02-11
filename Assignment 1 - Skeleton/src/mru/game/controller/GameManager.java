@@ -8,7 +8,6 @@ import mru.game.view.AppMenu;
 import mru.game.model.Record;
 
 public class GameManager {
-    // TODO: implement the GameManager constructor.
     /**
      * Creates the application, calling methods as necessary from the model and view packages.
      *
