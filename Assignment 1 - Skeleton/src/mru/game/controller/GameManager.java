@@ -31,9 +31,11 @@ public class GameManager {
             if(database.doesPlayerExist(playerName)) {
                 player = new Gambler(database.getPlayer(playerName.toUpperCase()));
                 appMenu.welcomeMessage(playerName, player.getBalance(), database.doesPlayerExist(playerName));
+            } else if (database.getPlayer(playerName.toUpperCase()).getBalance() <= 0) {
+                appMenu.refuseVisitor(); // Refuse the poor.
+                break;
             } else {
                 player = new Gambler(playerName);
-                
             }
 
             PuntoBancoGame currentGame = new PuntoBancoGame(player);
@@ -49,6 +51,10 @@ public class GameManager {
               char betChoice = appMenu.promptBet();
               int betAmount = appMenu.promptWager();
               currentGame.playRound(betChoice, betAmount);
+
+              if (player.getBalance <= 0) {
+                  break; // legs
+              }
 
               playAgainFlag = appMenu.promptPlayAgain();
 					} while (playAgainFlag);
