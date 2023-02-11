@@ -1,9 +1,7 @@
 package mru.game.view;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import mru.game.controller.Card;
 import mru.game.controller.Gambler;
 
 /**

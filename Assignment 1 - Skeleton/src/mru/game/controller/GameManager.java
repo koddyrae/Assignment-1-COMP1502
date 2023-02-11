@@ -3,7 +3,6 @@ package mru.game.controller;
 import java.io.*;
 import java.util.ArrayList;
 
-import mru.game.model.Player;
 import mru.game.view.AppMenu;
 import mru.game.model.Record;
 

@@ -9,7 +9,6 @@ public class Record {
   private String filename;
 
   private ArrayList <Player> listOfPlayers;
-    private ArrayList <Gambler> casinoPatrons;
 
 
   public Record(String filename) throws IOException {
