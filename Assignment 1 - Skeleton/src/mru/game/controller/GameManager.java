@@ -78,7 +78,6 @@ public class GameManager {
 				System.out.println("Saving...");
 				System.out.println("Done! Please visit us again");
 				loopControl = false;
-				break; //im not sure if i need this lol
 			}
 		} while (loopControl);
 	}
