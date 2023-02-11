@@ -55,7 +55,7 @@ public class AppMenu {
 			System.out.println("\n\t(T) Top player (Most number of wins)");
 			System.out.println("\t(N) Looking for a Name");
 			System.out.println("\t(B) Back to main menu");
-			System.out.println("\nEnter a choice: ");
+			System.out.print("\nEnter a choice: ");
 			choice = key.nextLine().toLowerCase().charAt(0);
 			if (choice == 't' || choice == 'n' || choice == 'b') {
 				return choice;
@@ -73,12 +73,21 @@ public class AppMenu {
 	 * @return choice user choice to continue in game menu
 	 */
 	public char promptBet() {
-		System.out.println("Who do you want to bet on: ");
-		System.out.println("\n\t(P) Player Wins");
-		System.out.println("\t(B) Banker Wins");
-		System.out.println("\t(T) Tie Game");
-		System.out.println("\nEnter a choice: ");
-		char choice = key.nextLine().toLowerCase().charAt(0);
+		char choice;
+		do {
+			System.out.println("Who do you want to bet on: ");
+			System.out.println("\n\t(P) Player Wins");
+			System.out.println("\t(B) Banker Wins");
+			System.out.println("\t(T) Tie Game");
+			System.out.print("\nEnter a choice: ");
+			choice = key.nextLine().toLowerCase().charAt(0);
+			if (choice == 'p' || choice == 'b' || choice == 't') {
+				return choice;
+			}
+			else {
+				System.out.println("Your input was invalid, please try again.");
+			}
+		} while (choice != 'p' || choice != 'b' || choice != 't');
 		key.nextLine();
 		return choice;
 	}
@@ -159,9 +168,8 @@ public class AppMenu {
 	 * @return name user inputted name
 	 */
 	public String promptName() {
-		System.out.println("Enter your name: ");
+		System.out.print("Enter your name: ");
 		String name = key.nextLine();
-		key.nextLine();
 		return name;
 	}
 
@@ -171,7 +179,7 @@ public class AppMenu {
 	 * @return bet amount
 	 */
 	public int promptWager() {
-		System.out.println("How much do you want to bet this round?");
+		System.out.print("How much do you want to bet this round?");
 		int bet = key.nextInt();
 		key.nextLine();
 		return bet;
@@ -183,7 +191,7 @@ public class AppMenu {
 	 * @return boolean on if player wants to play again or not
 	 */
 	public boolean promptPlayAgain() {
-		System.out.println("Do you want to play again (Y/N)");
+		System.out.print("Do you want to play again (Y/N)");
 		boolean play = false;
 		char choice = key.nextLine().charAt(0);
 		if (choice == 'Y') {
