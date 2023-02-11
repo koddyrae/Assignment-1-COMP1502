@@ -72,4 +72,8 @@ public class Gambler {
     public void setWins(int wins) {
         this.numberOfWins = wins;
     }
+
+    public ArrayList <Card> getHand() {
+        return hand;
+    }
 }
