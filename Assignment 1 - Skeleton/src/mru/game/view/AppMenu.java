@@ -1,6 +1,10 @@
 package mru.game.view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import mru.game.controller.Card;
+import mru.game.controller.Gambler;
 
 /**
  * @author koddy
@@ -101,7 +105,7 @@ public class AppMenu {
 		System.out.println("Press \"Enter\" to Continue...");
 		key.nextLine();
 		char choice = showMainMenu();
-		key.nextLine();
+		key.nextLine(); //flusher
 		return choice;
 	}
 	
@@ -112,6 +116,17 @@ public class AppMenu {
 	public char invalidInputToMain() {
 		System.out.println("Invalid Input...");
 		System.out.println("Returning to Main Menu");
+		char choice = showMainMenu();
+		return choice;
+	}
+	
+	/**
+	 * Method to return user to main menu a
+	 * @return choice user choice when back at main menu
+	 */
+	public char brokeDisplay() {
+		System.out.println("You have no money to play...");
+		System.out.println("Returning to main menu...");
 		char choice = showMainMenu();
 		return choice;
 	}
@@ -165,6 +180,39 @@ public class AppMenu {
 		System.out.println("**************************************************");
 		System.out.println("***  Welcome " + maybeBack + name + "   --- Your" + maybeNew + "balance is: " + balance + "$    ***");
 		System.out.println("**************************************************");
+	}
+	
+	/**
+	 * Method to print the game round and show the result
+	 * @param player1 player object
+	 * @param banker banker object
+	 * @param amountWon amount won/lost in round
+	 * @param result result boolean to check if won/lost
+	 */
+	public void roundDisplay(Gambler player1, Gambler banker, int amountWon, boolean result) {
+		String maybeWin = result ? " Won " : " Lose ";
+		int max = 0;
+		if (player1.getHand().size() > banker.getHand().size()) {
+			max = player1.getHand().size();
+		}
+		else {
+			max = banker.getHand().size();
+		}
+		
+		
+		System.out.printf("\t - PUNTO BANCO -\n");
+		System.out.println("+==================+==================+");
+		System.out.println("+|" + player1.getName() + "==========+" + banker.getName() + "===========|+");
+		for (int i = 0; i < max; i++) {
+			System.out.println("+|" + player1.getHand().get(i) + "======+" + banker.getHand().get(i) + "======|+");
+			System.out.println("+------------------+-------------------+");
+		}
+		System.out.println("+|" + player1.getName() + "POINTS: " + player1.getScore() + "|" + banker.getName() + "POINTS: " + player1.getScore() + "|+");
+		
+		System.out.println("+==================+==================+");
+		System.out.println("+|" + player1.getName() + maybeWin + "$" + amountWon  +"|+");
+		System.out.println("+==================+==================+");
+		
 	}
 	
 }
