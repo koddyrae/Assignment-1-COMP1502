@@ -1,3 +1,4 @@
 Ali,75,10
 Khosro,1639,18
 Eli,1000,18
+debugMeSenpai,0,666

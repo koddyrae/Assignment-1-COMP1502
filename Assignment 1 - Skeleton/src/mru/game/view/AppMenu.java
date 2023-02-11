@@ -22,25 +22,26 @@ public class AppMenu {
 	
 	/**
 	 * Method to print main menu
+	 * 
 	 * @return choice user choice to continue in mainmenu
 	 */
-	public char showMainMenu() {
+	public char promptWithMainMenu() {
 		System.out.println("Select One of these Options: ");
 
 		System.out.println("\n\t (P) Play game");
 		System.out.println("\t (S) Search");
 		System.out.println("\t (E) Exit");
 
-    char choice = 'e';
-    do {
-        if(choice != 'p' || choice != 's' || choice != 'e') {
-            System.out.println("Your input was invalid, try again.");
-        }
+		char choice = 'e';
+		do {
+			if (choice != 'p' || choice != 's' || choice != 'e') {
+				System.out.println("Your input was invalid, try again.");
+			}
 
-        System.out.println("\nEnter a choice: ");
-        choice = key.nextLine().toLowerCase().charAt(0);
-        key.nextLine();
-    } while(choice != 'p' || choice != 's' || choice != 'e');
+			System.out.println("\nEnter a choice: ");
+			choice = key.nextLine().toLowerCase().charAt(0);
+			key.nextLine();
+		} while (choice != 'p' || choice != 's' || choice != 'e');
 
 		return choice;
 	}
@@ -49,7 +50,7 @@ public class AppMenu {
 	 * Method to print search menu
 	 * @return choice user choice to continue in submenu
 	 */
-	public char searchMenu() {
+	public char promptWithSearchMenu() {
 		System.out.println("Select One of these Options: ");
 		System.out.println("\n\t(T) Top player (Most number of wins)");
 		System.out.println("\t(N) Looking for a Name");
@@ -109,12 +110,9 @@ public class AppMenu {
 	 * Method to allow player to return back to main menu
 	 * @return choice user choice to continue in main menu
 	 */
-	public char continueToMainMenu() {
+	public void promptEnterToContinue() {
 		System.out.println("Press \"Enter\" to Continue...");
 		key.nextLine();
-		char choice = showMainMenu();
-		key.nextLine(); //flusher
-		return choice;
 	}
 	
 	/**
@@ -124,7 +122,7 @@ public class AppMenu {
 	public char invalidInputToMain() {
 		System.out.println("Invalid Input...");
 		System.out.println("Returning to Main Menu");
-		char choice = showMainMenu();
+		char choice = promptWithMainMenu();
 		return choice;
 	}
 	
@@ -132,18 +130,14 @@ public class AppMenu {
 	 * Method to return user to main menu a
 	 * @return choice user choice when back at main menu
 	 */
-	public char brokeDisplay() {
+	public void brokeDisplay() {
 		System.out.println("You have no money to play...");
 		System.out.println("Returning to main menu...");
-		char choice = showMainMenu();
-		return choice;
 	}
 	
-	public char refuseVisitor() {
+	public void refuseVisitor() {
 		System.out.println("You are unable to play...");
 		System.out.println("Returning to main menu...");
-		char choice = showMainMenu();
-		return choice;
 	}
 	
 	/**
