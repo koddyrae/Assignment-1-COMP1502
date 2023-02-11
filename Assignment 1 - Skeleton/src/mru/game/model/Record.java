@@ -13,6 +13,17 @@ public class Record {
     loadTextFile(); // NOTE: setListOfPlayers is done in this method without a setter because it is done privately.
   }
 
+    /**
+     * @author Bryce 'cybeR' Carson
+     * @param name: an uppercase String of the player object to get.
+     * @return Player: a Player object
+     */
+    public Player getPlayer(String name) {
+        for(Player player : listOfPlayers) {
+            return player.getName().toUpperCase().equals(name);
+        }
+    }
+
   /**
      * @author Koddyrae
      * User inputs a file name and if it exists, it will load a Player arraylist
@@ -85,7 +96,19 @@ public class Record {
         }
 
     }
-    
+
+
+    /**
+     * @author Bryce 'cybeR' Carson
+     * @param String name: the name to search for in the Database.
+     */
+    public boolean doesPlayerExist(String name) {
+        for(Player player : listOfPlayers) {
+            return player.getName().toUpperCase().equals(name.toUpperCase())
+        }
+    }
+
+
 	/**
 	 * @author Koddyrae Method to return the player(s) in the arraylist by name
 	 * @param name user inputted search name
@@ -95,7 +118,7 @@ public class Record {
 		String result = "";
 
 		for (int i = 0; i < listOfPlayers.size(); i++) {
-			if (listOfPlayers.get(i).getName().toUpperCase().contains(name.toUpperCase())) {
+			if (listOfPlayers.get(i).getName().toUpperCase().equals(name.toUpperCase())) {
 				result += listOfPlayers.get(i).toString() + ",";
 			}
 		}

@@ -25,22 +25,29 @@ public class GameManager {
 			if (choice == 'p') {
 				// game loop
 				do {
-					// TODO: player must be initialized as new or with existing property values.
-					Gambler player = new Gambler("Player");
+            String playerName = appMenu.promptName();
+            if(record.doesPlayerExist()) {
+                Gambler player = new Gambler(record.getPlayer(playerName.toUpperCase()));
+            } else {
+                Gambler player = new Gambler(playerName);
+            }
 
-					PuntoBancoGame currentGame = new PuntoBancoGame(player);
+            PuntoBancoGame currentGame = new PuntoBancoGame(player);
 
-					// Game/betting menu and game loop
+					// Sitting at the casino table, players may place bets and wager on
+					// their bet, and then after the round plays out according to the
+					// rules of Punto Banco they are prompted whether or not to play
+					// again.
 					boolean playAgainFlag = true;
 					do {
 						// Betting menu triggered.
 
-						char betChoice = 'P'; // TODO: must be validated!
-						int betAmount = 0; // TODO: Must be validated!
-						currentGame.playRound(betChoice, betAmount);
+              char betChoice = appMenu.promptBet();
+              int betAmount = appMenu.promptWager();
+              currentGame.playRound(betChoice, betAmount);
 
-						// TODO: return to betting menu.
-					} while (playAgainFlag); // TODO: change the condition.
+              playAgainFlag = appMenu.promptPlayAgain();
+					} while (playAgainFlag);
 
 				} while (true); // TODO: change the condition.
 			}
