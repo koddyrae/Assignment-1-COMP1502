@@ -34,14 +34,14 @@ public class AppMenu {
 
 		char choice = 'e';
 		do {
-			if (choice != 'p' || choice != 's' || choice != 'e') {
+			if (!(choice == 'p' || choice == 's' || choice == 'e')) {
 				System.out.println("Your input was invalid, try again.");
 			}
 
-			System.out.println("\nEnter a choice: ");
+			System.out.print("\nEnter a choice: ");
 			choice = key.nextLine().toLowerCase().charAt(0);
 			key.nextLine();
-		} while (choice != 'p' || choice != 's' || choice != 'e');
+		} while (!(choice == 'p' || choice == 's' || choice == 'e'));
 
 		return choice;
 	}
