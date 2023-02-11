@@ -19,6 +19,7 @@ public class GameManager {
         // database.
         final String FILE_PATH = "res/CasinoInfo.txt";
         Record database = new Record(FILE_PATH);
+        ArrayList <Gambler> casinoPatrons = database.getPatrons();
 
         // Create an application menu object to perform view operations for us.
         AppMenu appMenu = new AppMenu();
@@ -31,13 +32,14 @@ public class GameManager {
             case 'p':
                 // preparePuntoBancoTable creates the Gambler object that
                 // playPuntoBanco requires as input.
-                playPuntoBanco(preparePuntoBancoTable());
+                Gambler focalGambler = preparePuntoBancoTable();
+                casinoPatrons = playPuntoBanco(focalGambler, casinoPatrons); // The focal player leaves the crowd of patrons, plays a game, then rejoins the crowd.
                 break;
             case 's':
                 searchRecords();
                 break;
             case 'e':
-                database.saveTextFile();
+                database.saveTextFile(casinoPatrons);
                 exitFlag = true;
             }
         } while(!exitFlag); // Raise flag to exit
@@ -82,8 +84,9 @@ public class GameManager {
         return player;
     }
 
-    private void playPuntoBanco(Gambler player) {
-        if (player.admittedToCasino) {
+    private void playPuntoBanco(Gambler player, ArrayList <Gambler> casinoPatrons) {
+        // Proceed with the games!
+        if (player.getAdmittedToCasino()) {
             // Start a new game of Punto Banco using the player
             PuntoBancoGame currentGame = new PuntoBancoGame(player);
 
@@ -108,6 +111,19 @@ public class GameManager {
             } while(playAgainFlag); // While the user wishes to continue playing.
         } else {
             appMenu.refuseVisitor();
+        }
+
+        // Thank you, come again! If a player has been to the casino before,
+        // they will also be found in the list of casinoPatrons, otherwise they
+        // must be added to the list of casinoPatrons after the end of the game.
+        // Formally, this depends on the Gambler.equals() method, which tests
+        // equality by name ONLY.
+        if(casinoPatrons.contains(player)) {
+            // Update the focal patron's record on file.
+            oldPlayerData = casinoPatrons.remove(player);
+            casinoPatrons.add(player);
+        } else {
+            casinoPatrons.add(player);
         }
     }
 

@@ -7,8 +7,10 @@ public class Record {
   private String filename;
 
   private ArrayList <Player> listOfPlayers;
+    private ArrayList <Gambler> casinoPatrons;
 
-  public Record(String filename) throws IOException {
+
+  public void Record(String filename) throws IOException {
     this.filename = filename;
     loadTextFile(); // NOTE: setListOfPlayers is done in this method without a setter because it is done privately.
   }
@@ -79,19 +81,28 @@ public class Record {
 
     /**
      * @author Koddyrae
+     * @contributor Bryce 'cybeR' Carson
      * Method used to save the listOfPlayers arraylist to a text file called CasinoInfo in the res folder
      * @throws IOException
      * TODO: this must be re-written using methods and packages we've been shown. He haven't been shown try-catch, so we can't use it.
      */
-    public void saveTextFile() throws IOException {
+    public void saveTextFile(ArrayList <Gambler> casinoPatrons) throws IOException {
+
+        // Restructure the data we need into what we care about for on-disk storage.
+        ArrayList <Player> patronData;
+        for(Gambler gambler : casinoPatrons) {
+            patronData.add(new Player(Gambler));
+        }
+
         try {
             FileOutputStream fos = new FileOutputStream("res/CasinoInfo.txt");
             PrintWriter pw = new PrintWriter(fos);
 
-            for (Player player : listOfPlayers) {
-                pw.println(player.toString());
-
+            for (Player patron : patronData) {
+                pw.println(patron);
             }
+
+            // Tidy up after ourselves.
             pw.close();
             fos.close();
         } catch (FileNotFoundException e) {
@@ -157,5 +168,14 @@ public class Record {
 		return result;
 
 	}
+
+    public ArrayList <Gambler> getPatrons() {
+        ArrayList <Gambler> patrons;
+        for(Player record : listOfPlayers) {
+            patrons.add(new Gambler(record)); // Create a gambler from the data on record.
+        }
+
+        return patrons;
+    }
 
 }

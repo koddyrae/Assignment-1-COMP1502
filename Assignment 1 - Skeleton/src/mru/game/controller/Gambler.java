@@ -88,7 +88,15 @@ public class Gambler {
         this.score = score;
     }
 
+    public boolean getAdmittedToCasino() {
+        return this.admittedToCasino;
+    }
+
     public void setAdmittedToCasino(boolean admittedToCasino) {
         this.admittedToCasino = admittedToCasino;
+    }
+
+    public boolean equals(Gambler anyGambler) {
+        return this.getName() == anyGambler.getName();
     }
 }
