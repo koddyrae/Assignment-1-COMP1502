@@ -139,7 +139,7 @@ public class PuntoBancoGame {
      * @param numberOfCards The number of cards to get from the deck currently in play.
      * @return ArrayList <Card> An ArrayList of Card(s) is returned, all of which can be added to a Gambler's hand.
      */
-    public ArrayList <Card> drawCards(int numberOfCards) {
+    private ArrayList <Card> drawCards(int numberOfCards) {
         ArrayList <Card> cards = new ArrayList <Card>();
         for(int i = 0; i <= numberOfCards; i++) {
             if(deck.getDeck().size() >= 1) {
