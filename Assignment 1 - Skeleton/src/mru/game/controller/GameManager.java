@@ -25,9 +25,11 @@ public class GameManager {
 			if (choice == 'p') {
 				// game loop
 				do {
+            // Prepare a Gambler object before starting the game.
             String playerName = appMenu.promptName();
             if(record.doesPlayerExist()) {
                 Gambler player = new Gambler(record.getPlayer(playerName.toUpperCase()));
+                appMenu.welcomeMessage();
             } else {
                 Gambler player = new Gambler(playerName);
             }
