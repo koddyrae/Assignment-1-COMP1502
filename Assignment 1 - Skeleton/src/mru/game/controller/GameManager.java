@@ -8,6 +8,9 @@ import mru.game.view.AppMenu;
 import mru.game.model.Record;
 
 public class GameManager {
+	private AppMenu appMenu;
+	private Record database;
+	
     /**
      * Creates the application, calling methods as necessary from the model and view packages.
      *
@@ -18,11 +21,11 @@ public class GameManager {
         // Every instance of the application needs to associate with the
         // database.
         final String FILE_PATH = "res/CasinoInfo.txt";
-        Record database = new Record(FILE_PATH);
+        database = new Record(FILE_PATH);
         ArrayList <Gambler> casinoPatrons = database.getPatrons();
 
         // Create an application menu object to perform view operations for us.
-        AppMenu appMenu = new AppMenu();
+        appMenu = new AppMenu();
 
         // Main application menu loop.
         boolean exitFlag = false;
@@ -78,13 +81,13 @@ public class GameManager {
             }
         } else {
 						player = new Gambler(playerName);
-            appMenu.welcomeMessage(playerName, player.getBalance(), newPlayer)
+            appMenu.welcomeMessage(playerName, player.getBalance(), newPlayer);
         }
 
         return player;
     }
 
-    private void playPuntoBanco(Gambler player, ArrayList <Gambler> casinoPatrons) {
+    private ArrayList<Gambler> playPuntoBanco(Gambler player, ArrayList <Gambler> casinoPatrons) {
         // Proceed with the games!
         if (player.getAdmittedToCasino()) {
             // Start a new game of Punto Banco using the player
@@ -120,11 +123,13 @@ public class GameManager {
         // equality by name ONLY.
         if(casinoPatrons.contains(player)) {
             // Update the focal patron's record on file.
-            oldPlayerData = casinoPatrons.remove(player);
-            casinoPatrons.add(player);
+            casinoPatrons.remove(player); // Remove player by name, the balance is stale data.
+            casinoPatrons.add(player); // Add player object, containing name balance and wins.
         } else {
             casinoPatrons.add(player);
         }
+        
+        return casinoPatrons;
     }
 
     /**
@@ -150,6 +155,6 @@ public class GameManager {
                 appMenu.printPlayersByName(database.findPlayersByName(searchName));
                 break;
             }
-        } while(!searchChoice.equals('b'));
+        } while(!(searchChoice == 'b'));
     }
 }

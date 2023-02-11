@@ -36,11 +36,11 @@ public class AppMenu {
     char choice = 'e';
     do {
         if(choice != 'p' || choice != 's' || choice != 'e') {
-            System.out.println("Your input was invalid, try again.")
+            System.out.println("Your input was invalid, try again.");
         }
 
         System.out.println("\nEnter a choice: ");
-        char choice = key.nextLine().toLowerCase().charAt(0);
+        choice = key.nextLine().toLowerCase().charAt(0);
         key.nextLine();
     } while(choice != 'p' || choice != 's' || choice != 'e');
 

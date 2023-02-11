@@ -3,6 +3,8 @@ package mru.game.model;
 import java.io.*;
 import java.util.ArrayList;
 
+import mru.game.controller.Gambler;
+
 public class Record {
   private String filename;
 
@@ -10,7 +12,7 @@ public class Record {
     private ArrayList <Gambler> casinoPatrons;
 
 
-  public void Record(String filename) throws IOException {
+  public Record(String filename) throws IOException {
     this.filename = filename;
     loadTextFile(); // NOTE: setListOfPlayers is done in this method without a setter because it is done privately.
   }
@@ -89,9 +91,10 @@ public class Record {
     public void saveTextFile(ArrayList <Gambler> casinoPatrons) throws IOException {
 
         // Restructure the data we need into what we care about for on-disk storage.
-        ArrayList <Player> patronData;
+        ArrayList <Player> patronData =	new ArrayList<Player>();
+        
         for(Gambler gambler : casinoPatrons) {
-            patronData.add(new Player(Gambler));
+            patronData.add(new Player(gambler));
         }
 
         try {
@@ -170,7 +173,7 @@ public class Record {
 	}
 
     public ArrayList <Gambler> getPatrons() {
-        ArrayList <Gambler> patrons;
+        ArrayList <Gambler> patrons = new ArrayList<Gambler>();
         for(Player record : listOfPlayers) {
             patrons.add(new Gambler(record)); // Create a gambler from the data on record.
         }
