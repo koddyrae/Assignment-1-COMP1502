@@ -118,10 +118,18 @@ public class AppMenu {
 		System.out.printf("\t- PLAYER INFO -\n");
 		System.out.println("|=============|=============|=============|");
 		System.out.println("|=NAME========|=BALANCE=====|=# WINS======|");
-		for (int i = 0; i < splittedLine.length; i += 3) {
-			System.out
+		
+		if (splittedLine.length == 1) {
+			System.out.println("|             |             |             |");
+			System.out.println("|=============|=============|=============|");
+			System.out.println("No players are found with this name.\n");
+		}
+		else {
+			for (int i = 0; i < splittedLine.length; i += 3) {
+				System.out
 					.println("| " + splittedLine[i] + "| " + splittedLine[i + 1] + " | " + splittedLine[i + 2] + " |");
-			System.out.println("|-------------|------------|");
+				System.out.println("|-------------|------------|");
+			}
 		}
 	}
 

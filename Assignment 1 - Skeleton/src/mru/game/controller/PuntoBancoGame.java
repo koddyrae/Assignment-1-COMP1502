@@ -24,6 +24,7 @@ public class PuntoBancoGame {
     public PuntoBancoGame(Gambler player) {
         this.deck = new CardDeck(); // Ensure a fresh deck of cards is available.
         this.player = player;
+        this.seatsAtTable = new ArrayList<>();
         this.seatsAtTable.add(new Gambler(true)); // Ensure a banker is at the table, awaiting players.
         this.seatsAtTable.add(player);
     }
@@ -38,7 +39,7 @@ public class PuntoBancoGame {
 
         // Deal 2 cards to the player and 2 cards to the Banker
         for(Gambler seat : this.seatsAtTable) {
-            seat.hand.addAll(drawCards(2));
+            seat.hand.addAll(drawCards(2)); //TODO:needs to be fixed, seat.hand is null
         }
 
         // Score hands (are they high?) and deal a third card if necessary.
