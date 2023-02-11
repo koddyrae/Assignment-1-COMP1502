@@ -131,6 +131,13 @@ public class AppMenu {
 		return choice;
 	}
 	
+	public char refuseVisitor() {
+		System.out.println("You are unable to play...");
+		System.out.println("Returning to main menu...");
+		char choice = showMainMenu();
+		return choice;
+	}
+	
 	/**
 	 * Method to ask user to input a name
 	 * @return name user inputted name 

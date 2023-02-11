@@ -16,28 +16,29 @@ public class GameManager {
 		// Main loop and main menu
 		appMenu = new AppMenu();
 		boolean loopControl = true;
-		
+
 		final String FILE_PATH = "res/CasinoInfo.txt";
 		Record database = new Record(FILE_PATH);
-		
+
 		char choice = appMenu.showMainMenu();
 		mainLoop: do {
 			if (choice == 'p') {
 				// game loop
 				do {
 					Gambler player;
-            // Prepare a Gambler object before starting the game.
-            String playerName = appMenu.promptName();
-            if(database.doesPlayerExist(playerName)) {
-                player = new Gambler(database.getPlayer(playerName.toUpperCase()));
-                appMenu.welcomeMessage(playerName, player.getBalance(), database.doesPlayerExist(playerName));
-            } else if (database.getPlayer(playerName.toUpperCase()).getBalance() <= 0) {
-                appMenu.refuseVisitor(); // Refuse the poor.
-            } else {
-                player = new Gambler(playerName);
-            }
+					// Prepare a Gambler object before starting the game.
+					String playerName = appMenu.promptName();
+					if (database.doesPlayerExist(playerName)) {
+						player = new Gambler(database.getPlayer(playerName.toUpperCase()));
+						appMenu.welcomeMessage(playerName, player.getBalance(), database.doesPlayerExist(playerName));
+					} else if (database.getPlayer(playerName.toUpperCase()).getBalance() <= 0) {
+						appMenu.refuseVisitor();
+						break;// Refuse the poor.
+					} else {
+						player = new Gambler(playerName);
+					}
 
-            PuntoBancoGame currentGame = new PuntoBancoGame(player);
+					PuntoBancoGame currentGame = new PuntoBancoGame(player);
 
 					// Sitting at the casino table, players may place bets and wager on
 					// their bet, and then after the round plays out according to the
@@ -47,20 +48,19 @@ public class GameManager {
 					do {
 						// Betting menu triggered.
 
-              char betChoice = appMenu.promptBet();
-              int betAmount = appMenu.promptWager();
-              currentGame.playRound(betChoice, betAmount);
+						char betChoice = appMenu.promptBet();
+						int betAmount = appMenu.promptWager();
+						currentGame.playRound(betChoice, betAmount);
 
-              if (player.getBalance() <= 0) {
-                  appMenu.brokeDisplay(); // The player is broke.
-              }
+						if (player.getBalance() <= 0) {
+							appMenu.brokeDisplay(); // The player is broke.
+						}
 
-             playAgainFlag = appMenu.promptPlayAgain();
+						playAgainFlag = appMenu.promptPlayAgain();
 					} while (playAgainFlag);
 
 				} while (true); // TODO: change the condition.
-			}
-			else if (choice == 's') {
+			} else if (choice == 's') {
 				char searchChoice = appMenu.searchMenu();
 
 				if (searchChoice == 't') {
@@ -85,8 +85,7 @@ public class GameManager {
 				System.out.println("Saving...");
 				System.out.println("Done! Please visit us again");
 				loopControl = false;
-			}
-			else {
+			} else {
 				appMenu.invalidInputToMain();
 				continue mainLoop;
 			}

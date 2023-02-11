@@ -1,6 +1,7 @@
 package mru.game.controller;
 
 import java.util.ArrayList;
+import mru.game.view.*;
 
 /**
  *
@@ -11,7 +12,10 @@ public class PuntoBancoGame {
 
     public ArrayList <Gambler> seatsAtTable;
     public CardDeck deck;
-
+    private Gambler player;
+    private AppMenu appMenu;
+    
+    
     /**
      * In this class you implement the game
      * You should use CardDeck class here
@@ -19,10 +23,11 @@ public class PuntoBancoGame {
      */
     public PuntoBancoGame(Gambler player) {
         this.deck = new CardDeck(); // Ensure a fresh deck of cards is available.
+        this.player = player;
         this.seatsAtTable.add(new Gambler(true)); // Ensure a banker is at the table, awaiting players.
         this.seatsAtTable.add(player);
     }
-
+    
     public void playRound(char betChoice, int betAmount) {
         int bankerScore = 0;
         int playerScore = 0;
@@ -105,26 +110,26 @@ public class PuntoBancoGame {
         case 't':
             if (playerScore == bankerScore) {
                 player.setBalance(player.getBalance() + 6 * betAmount);
-                appMenu.roundDisplay(player, banker,    5 * betAmount, true);
+                appMenu.roundDisplay(player, this.seatsAtTable.get(0),    5 * betAmount, true);
             } else {
-                appMenu.roundDisplay(player, banker, betAmount, false)
+                appMenu.roundDisplay(player, this.seatsAtTable.get(0), betAmount, false);
             }
             break;
         case 'p':
             if (playerScore > bankerScore) {
                 player.setBalance(player.getBalance() + 2 * betAmount);
-                appMenu.roundDisplay(player, banker,        betAmount, true);
+                appMenu.roundDisplay(player, this.seatsAtTable.get(0),        betAmount, true);
 
             } else {
-                appMenu.roundDisplay(player, banker, betAmount, false);
+                appMenu.roundDisplay(player, this.seatsAtTable.get(0), betAmount, false);
             }
             break;
         case 'b':
             if (playerScore < bankerScore) {
                 player.setBalance(player.getBalance() + 2 * betAmount);
-                appMenu.roundDisplay(player, banker,        betAmount, true);
+                appMenu.roundDisplay(player, this.seatsAtTable.get(0),        betAmount, true);
             } else {
-                appMenu.roundDisplay(player, banker, betAmount, false);
+                appMenu.roundDisplay(player, this.seatsAtTable.get(0), betAmount, false);
             }
             break;
         }
