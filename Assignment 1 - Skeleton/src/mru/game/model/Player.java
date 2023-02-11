@@ -1,5 +1,7 @@
 package mru.game.model;
 
+import mru.game.controller.Gambler;
+
 /**
  * @author Koddy Madriaga
  *
@@ -13,14 +15,16 @@ public class Player {
 	private String name;
 	private int balance;
 	private int numOfWins;
-	
-	/**
-	 * Default constructor for player object
-	 */
-	
-	public Player() {
-		
-	}
+
+    /**
+     * @author Bryce 'cybeR' Carson
+     * @param Gambler: its a gambler, a sinful, sinful gambler.
+     */
+    public Player(Gambler gambler) {
+        name = gambler.getName();
+        balance = gambler.getBalance();
+        numOfWins = gambler.getWins();
+    }
 	
 	/**
 	 * Constructor for player object
