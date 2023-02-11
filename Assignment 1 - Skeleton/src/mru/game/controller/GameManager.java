@@ -33,7 +33,6 @@ public class GameManager {
                 appMenu.welcomeMessage(playerName, player.getBalance(), database.doesPlayerExist(playerName));
             } else if (database.getPlayer(playerName.toUpperCase()).getBalance() <= 0) {
                 appMenu.refuseVisitor(); // Refuse the poor.
-                break;
             } else {
                 player = new Gambler(playerName);
             }
@@ -52,11 +51,11 @@ public class GameManager {
               int betAmount = appMenu.promptWager();
               currentGame.playRound(betChoice, betAmount);
 
-              if (player.getBalance <= 0) {
-                  break; // legs
+              if (player.getBalance() <= 0) {
+                  appMenu.brokeDisplay(); // The player is broke.
               }
 
-              playAgainFlag = appMenu.promptPlayAgain();
+             playAgainFlag = appMenu.promptPlayAgain();
 					} while (playAgainFlag);
 
 				} while (true); // TODO: change the condition.

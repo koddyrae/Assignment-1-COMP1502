@@ -96,39 +96,35 @@ public class PuntoBancoGame {
         // Score hands
         // Recall that BANKER sat at the table first.
         bankerScore = this.seatsAtTable.get(0).scoreHand();
+        this.seatsAtTable.get(0).setScore(bankerScore);
         playerScore = this.seatsAtTable.get(1).scoreHand();
+        this.seatsAtTable.get(1).setScore(playerScore);
 
         // Bet successful?
-        // TODO: FIXME: these cases are defensive and don't rely on pre-validated input.
         switch (betChoice) {
-        case 'T': case 't':
+        case 't':
             if (playerScore == bankerScore) {
-                this.seatsAtTable.get(1).balance += 6 * betAmount;
-
-                System.out.println("Player bet successfully!");
-                System.out.println("Player won 5x the bet (winnings and wager returned to player's balance)!");
+                player.setBalance(player.getBalance() + 6 * betAmount);
+                appMenu.roundDisplay(player, banker,    5 * betAmount, true);
             } else {
-                System.out.println("Player lost their bet.");
+                appMenu.roundDisplay(player, banker, betAmount, false)
             }
             break;
-        case 'P': case 'p':
+        case 'p':
             if (playerScore > bankerScore) {
-                this.seatsAtTable.get(1).balance += 2 * betAmount;
+                player.setBalance(player.getBalance() + 2 * betAmount);
+                appMenu.roundDisplay(player, banker,        betAmount, true);
 
-                System.out.println("Player bet successfully!");
-                System.out.println("Player won 1x the bet (winnings and wager returned to player's balance)!");
             } else {
-                System.out.println("Player lost their bet.");
+                appMenu.roundDisplay(player, banker, betAmount, false);
             }
             break;
-        case 'B': case 'b':
+        case 'b':
             if (playerScore < bankerScore) {
-                this.seatsAtTable.get(1).balance += 2 * betAmount;
-
-                System.out.println("Player bet successfully!");
-                System.out.println("Player won 1x the bet (winnings and wager returned to player's balance)!");
+                player.setBalance(player.getBalance() + 2 * betAmount);
+                appMenu.roundDisplay(player, banker,        betAmount, true);
             } else {
-                System.out.println("Player lost their bet.");
+                appMenu.roundDisplay(player, banker, betAmount, false);
             }
             break;
         }

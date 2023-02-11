@@ -14,6 +14,7 @@ public class Gambler {
     private String name = BANKERS_NAME;
     public int balance = 0;
     private int numberOfWins = 0;
+    private int score = 0;
 
     public ArrayList <Card> hand;
 
@@ -75,5 +76,13 @@ public class Gambler {
 
     public ArrayList <Card> getHand() {
         return hand;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
