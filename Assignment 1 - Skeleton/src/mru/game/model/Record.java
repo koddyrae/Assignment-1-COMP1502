@@ -20,7 +20,9 @@ public class Record {
      */
     public Player getPlayer(String name) {
         for(Player player : listOfPlayers) {
-            return player.getName().toUpperCase().equals(name);
+            if(player.getName().toUpperCase().equals(name)) {
+                return player;
+            }
         }
     }
 
@@ -104,7 +106,7 @@ public class Record {
      */
     public boolean doesPlayerExist(String name) {
         for(Player player : listOfPlayers) {
-            return player.getName().toUpperCase().equals(name.toUpperCase())
+            return player.getName().toUpperCase().equals(name.toUpperCase());
         }
     }
 
