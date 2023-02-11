@@ -28,15 +28,25 @@ public class AppMenu {
 	 */
 	public char showMainMenu() {
 		System.out.println("Select One of these Options: ");
+
 		System.out.println("\n\t (P) Play game");
 		System.out.println("\t (S) Search");
 		System.out.println("\t (E) Exit");
-		System.out.println("\nEnter a choice: ");
-		char choice = key.nextLine().toLowerCase().charAt(0);
-		key.nextLine();
+
+    char choice = 'e';
+    do {
+        if(choice != 'p' || choice != 's' || choice != 'e') {
+            System.out.println("Your input was invalid, try again.")
+        }
+
+        System.out.println("\nEnter a choice: ");
+        char choice = key.nextLine().toLowerCase().charAt(0);
+        key.nextLine();
+    } while(choice != 'p' || choice != 's' || choice != 'e');
+
 		return choice;
 	}
-	
+
 	/**
 	 * Method to print search menu
 	 * @return choice user choice to continue in submenu

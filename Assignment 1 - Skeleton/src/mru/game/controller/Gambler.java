@@ -16,6 +16,8 @@ public class Gambler {
     private int numberOfWins = 0;
     private int score = 0;
 
+    private boolean admittedToCasino = true; // True by default.
+
     public ArrayList <Card> hand;
 
     public Gambler (boolean isBanker) {
@@ -84,5 +86,9 @@ public class Gambler {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public void setAdmittedToCasino(boolean admittedToCasino) {
+        this.admittedToCasino = admittedToCasino;
     }
 }
