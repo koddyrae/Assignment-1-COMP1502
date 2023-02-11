@@ -1,6 +1,6 @@
 package mru.game.controller;
 
-import java.util.ArrayList; // ie, how to avoid the init-0 problem.
+import java.util.ArrayList;
 import java.util.Collections;
 
 /**
@@ -16,7 +16,7 @@ public class CardDeck {
 	private ArrayList <Card> deck;
 	
 	/**
-	 * This constructor initiate the ArrayList and calls the respective methods to create a new deck
+	 * This constructor initiate the arraylist and calls the repective methods to create a new deck
 	 */
 	public CardDeck() {
 		deck = new ArrayList<Card>();
@@ -27,18 +27,17 @@ public class CardDeck {
 	/**
 	 * This method creates the deck
 	 */
-	public void createDeck() {
+	private void createDeck() {
 		// suits holds the name of the suits
 		String[] suits = {"Spades", "Diamond", "Clubs", "Hearts"};
 		
 		/*
-		 * The while loop creates a whole new deck based on their suit and rank
+		 * The for loop creates a whole new deck based on their suit and rank
 		 */
-		int i = 0, j = 1;
-		while ((i < 4) && (j <= 13)) {
-			i++; j++; // increment
-			// e.g. new Card (0, 1); new Card (3, 12) => meaning: Ace of Spaces; Queen of Hearts.
-			deck.add(new Card (j, suits[i]));
+		for (int i = 0 ; i < 4; i++) {
+			for (int j = 1 ; j <=13 ; j++) {
+				deck.add(new Card (j,suits[i]));
+			}
 		}
 		
 	}
@@ -46,7 +45,7 @@ public class CardDeck {
 	/**
 	 * this method shuffle the deck after creating a new deck
 	 */
-	public void shuffleDeck() {
+	private void shuffleDeck() {
 		Collections.shuffle(deck); 
 	}
 
