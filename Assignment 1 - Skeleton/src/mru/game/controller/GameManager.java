@@ -25,13 +25,15 @@ public class GameManager {
 			if (choice == 'p') {
 				// game loop
 				do {
+					Gambler player;
             // Prepare a Gambler object before starting the game.
             String playerName = appMenu.promptName();
-            if(record.doesPlayerExist()) {
-                Gambler player = new Gambler(record.getPlayer(playerName.toUpperCase()));
-                appMenu.welcomeMessage();
+            if(database.doesPlayerExist(playerName)) {
+                player = new Gambler(database.getPlayer(playerName.toUpperCase()));
+                appMenu.welcomeMessage(playerName, player.getBalance(), database.doesPlayerExist(playerName));
             } else {
-                Gambler player = new Gambler(playerName);
+                player = new Gambler(playerName);
+                
             }
 
             PuntoBancoGame currentGame = new PuntoBancoGame(player);
@@ -78,6 +80,10 @@ public class GameManager {
 				System.out.println("Saving...");
 				System.out.println("Done! Please visit us again");
 				loopControl = false;
+			}
+			else {
+				appMenu.invalidInputToMain();
+				continue mainLoop;
 			}
 		} while (loopControl);
 	}

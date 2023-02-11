@@ -19,11 +19,13 @@ public class Record {
      * @return Player: a Player object
      */
     public Player getPlayer(String name) {
+    	Player result = null;
         for(Player player : listOfPlayers) {
             if(player.getName().toUpperCase().equals(name)) {
-                return player;
+            	result = player;
             }
         }
+        return result;
     }
 
   /**
@@ -105,9 +107,13 @@ public class Record {
      * @param String name: the name to search for in the Database.
      */
     public boolean doesPlayerExist(String name) {
+    	boolean exist = false;
         for(Player player : listOfPlayers) {
-            return player.getName().toUpperCase().equals(name.toUpperCase());
+            if(player.getName().toUpperCase().equals(name.toUpperCase())) {
+            	exist = true;
+            }
         }
+        return exist;
     }
 
 

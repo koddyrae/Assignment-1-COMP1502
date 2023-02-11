@@ -52,7 +52,7 @@ public class AppMenu {
 	 * Method to print starting game menu
 	 * @return choice user choice to continue in game menu
 	 */
-	public char bettingMenu() {
+	public char promptBet() {
 		System.out.println("Who do you want to bet on: ");
 		System.out.println("\n\t(P) Player Wins");
 		System.out.println("\t(B) Banker Wins");
