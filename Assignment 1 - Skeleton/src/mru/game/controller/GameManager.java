@@ -25,9 +25,6 @@ public class GameManager {
 		database = new Record(FILE_PATH);
 		ArrayList<Gambler> casinoPatrons = database.getPatrons();
 
-		// Create an application menu object to perform view operations for us.
-		appMenu = new AppMenu();
-
 		// Main application menu loop.
 		boolean exitFlag = false;
 		do {
