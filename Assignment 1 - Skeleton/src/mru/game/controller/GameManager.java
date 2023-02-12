@@ -7,7 +7,7 @@ import mru.game.view.AppMenu;
 import mru.game.model.Record;
 
 public class GameManager {
-	private AppMenu appMenu;
+	private AppMenu appMenu = new AppMenu();
 	private Record database;
 
 	/**
@@ -24,9 +24,6 @@ public class GameManager {
 		final String FILE_PATH = "res/CasinoInfo.txt";
 		database = new Record(FILE_PATH);
 		ArrayList<Gambler> casinoPatrons = database.getPatrons();
-
-		// Create an application menu object to perform view operations for us.
-		appMenu = new AppMenu();
 
 		// Main application menu loop.
 		boolean exitFlag = false;
@@ -103,7 +100,8 @@ public class GameManager {
 			// their bet, and then after the round plays out according to the
 			// rules of Punto Banco they are prompted whether or not to play
 			// again.
-			boolean playAgainFlag = true;
+			char playAgain;
+			//boolean playAgainFlag = true;
 			do {
 				// Betting menu triggered.
 				char betChoice = appMenu.promptBet();
@@ -114,11 +112,12 @@ public class GameManager {
 				// Check that the player has not lost all of their money.
 				if (player.getBalance() <= 0) {
 					appMenu.brokeDisplay(); // The player is broke (has no money).
-					playAgainFlag = false;
+					playAgain = 'n';
 				} else {
-					playAgainFlag = appMenu.promptPlayAgain();
+					playAgain = appMenu.promptPlayAgain();
 				}
-			} while (playAgainFlag); // While the user wishes to continue playing.
+			//} while (playAgainFlag); // While the user wishes to continue playing.
+			} while (playAgain != 'n');
 		} else {
 			appMenu.refuseVisitor();
 		}

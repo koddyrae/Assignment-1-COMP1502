@@ -198,15 +198,20 @@ public class AppMenu {
 	 * 
 	 * @return boolean on if player wants to play again or not
 	 */
-	public boolean promptPlayAgain() {
-		System.out.print("Do you want to play again (Y/N)");
-		boolean play = false;
-		char choice = key.nextLine().charAt(0);
-		if (choice == 'Y') {
-			play = true;
-		}
-		key.nextLine();
-		return play;
+	public char promptPlayAgain() {
+		char choice;
+			do {
+				System.out.print("Do you wish to play again? (Y/N)");
+				choice = key.nextLine().toLowerCase().charAt(0);
+				if (choice == 'y' || choice == 'n') {
+					return choice;
+				}
+				else {
+					System.out.println("Your input was invalid, please try again.");
+				}
+			} while (choice != 'y' || choice != 'n');
+			key.nextLine();
+			return choice;
 	}
 
 	/**
@@ -245,7 +250,7 @@ public class AppMenu {
 		System.out.printf("\t - PUNTO BANCO -\n");
 		System.out.println("+==================+==================+");
 		System.out.println("|+" + player1.getName() + "==========+" + banker.getName() + "===========+|");
-		for (int i = 0; i < max -1; i++) {
+		for (int i = 0; i < 3; i++) {
 			System.out.println("|+" + player1.getHand().get(i) + "      +" + banker.getHand().get(i) + "      +|");
 			System.out.println("+------------------+-------------------+");
 		}
