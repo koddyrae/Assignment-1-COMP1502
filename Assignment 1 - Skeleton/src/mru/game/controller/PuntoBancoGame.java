@@ -44,7 +44,7 @@ public class PuntoBancoGame {
 		// Score hands (are they high?) and deal a third card if necessary.
 		for (Gambler seat : this.seatsAtTable) {
 			if (seat.scoreHand() >= 8) {
-				break;
+				continue;
 			} else {
 				// Score hands
 				// Recall that BANKER sat at the table first.
