@@ -255,7 +255,7 @@ public class AppMenu {
 			System.out.println("+------------------+-------------------+");
 		}
 		System.out.println("|+" + player1.getName() + " POINTS: " + player1.getScore() + "|" + banker.getName()
-				+ " POINTS: " + player1.getScore() + "+|");
+				+ " POINTS: " + banker.getScore() + "+|");
 
 		System.out.println("+==================+==================+");
 		System.out.println("+|" + player1.getName() + maybeWin + "$" + amountWon + "|+");
