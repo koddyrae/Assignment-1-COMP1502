@@ -56,8 +56,8 @@ public class GameManager {
 	 * @author Bryce 'cybeR' Carson
 	 */
 	private Gambler preparePuntoBancoTable() {
-		final boolean returningPlayer = true;
-		final boolean newPlayer = false;
+		final boolean RETURNING_PLAYER = true;
+		final boolean NEW_PLAYER = false;
 
 		// Prepare a Gambler object before starting the game.
 		Gambler player;
@@ -74,7 +74,7 @@ public class GameManager {
 			player = new Gambler(database.getPlayer(playerName.toUpperCase()));
 			int playerBalance = player.getBalance();
 			if (playerBalance > 0) {
-				appMenu.welcomeMessage(playerName, playerBalance, returningPlayer);
+				appMenu.welcomeMessage(playerName, playerBalance, RETURNING_PLAYER);
 			} else {
 				/*
 				 * The player is not admitted to the casino. This is not magical because it's a
@@ -84,7 +84,7 @@ public class GameManager {
 			}
 		} else {
 			player = new Gambler(playerName);
-			appMenu.welcomeMessage(playerName, player.getBalance(), newPlayer);
+			appMenu.welcomeMessage(playerName, player.getBalance(), NEW_PLAYER);
 		}
 
 		return player;
