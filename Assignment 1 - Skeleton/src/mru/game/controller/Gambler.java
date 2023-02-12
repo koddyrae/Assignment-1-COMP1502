@@ -21,16 +21,19 @@ public class Gambler {
     public ArrayList <Card> hand;
 
     public Gambler (boolean isBanker) {
+    	hand = new ArrayList<>();
         this.balance = BANKERS_BALANCE;
     }
 
     public Gambler (String name) {
+    	hand = new ArrayList<>();
         this.name = name;
         this.balance = 100;
         this.numberOfWins = 0;
     }
 
     public Gambler (Player player) {
+    	hand = new ArrayList<>();
         this.name = player.getName();
         this.balance = player.getBalance();
         this.numberOfWins = player.getWins();

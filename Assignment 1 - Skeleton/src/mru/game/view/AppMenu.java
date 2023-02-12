@@ -217,8 +217,8 @@ public class AppMenu {
 	 * @param returningPlayer checks player is new or not
 	 */
 	public void welcomeMessage(String name, int balance, boolean returningPlayer) {
-		String maybeBack = returningPlayer ? "back " : "";
-		String maybeNew = returningPlayer ? "initial " : "";
+		String maybeBack = returningPlayer ? " back " : "";
+		String maybeNew = returningPlayer ? " initial " : "";
 		System.out.println("**************************************************");
 		System.out.println(
 				"***  Welcome " + maybeBack + name + "   --- Your" + maybeNew + "balance is: " + balance + "$    ***");
@@ -244,13 +244,13 @@ public class AppMenu {
 
 		System.out.printf("\t - PUNTO BANCO -\n");
 		System.out.println("+==================+==================+");
-		System.out.println("+|" + player1.getName() + "==========+" + banker.getName() + "===========|+");
-		for (int i = 0; i < max; i++) {
-			System.out.println("+|" + player1.getHand().get(i) + "======+" + banker.getHand().get(i) + "======|+");
+		System.out.println("|+" + player1.getName() + "==========+" + banker.getName() + "===========+|");
+		for (int i = 0; i < max -1; i++) {
+			System.out.println("|+" + player1.getHand().get(i) + "      +" + banker.getHand().get(i) + "      +|");
 			System.out.println("+------------------+-------------------+");
 		}
-		System.out.println("+|" + player1.getName() + "POINTS: " + player1.getScore() + "|" + banker.getName()
-				+ "POINTS: " + player1.getScore() + "|+");
+		System.out.println("|+" + player1.getName() + " POINTS: " + player1.getScore() + "|" + banker.getName()
+				+ " POINTS: " + player1.getScore() + "+|");
 
 		System.out.println("+==================+==================+");
 		System.out.println("+|" + player1.getName() + maybeWin + "$" + amountWon + "|+");

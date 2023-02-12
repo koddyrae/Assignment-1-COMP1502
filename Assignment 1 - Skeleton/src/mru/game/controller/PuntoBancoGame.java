@@ -22,6 +22,7 @@ public class PuntoBancoGame {
      * See the instructions for the game rules
      */
     public PuntoBancoGame(Gambler player) {
+    	appMenu = new AppMenu();
         this.deck = new CardDeck(); // Ensure a fresh deck of cards is available.
         this.player = player;
         this.seatsAtTable = new ArrayList<>();
