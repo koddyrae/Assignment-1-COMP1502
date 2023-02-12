@@ -7,7 +7,7 @@ import mru.game.view.AppMenu;
 import mru.game.model.Record;
 
 public class GameManager {
-	private AppMenu appMenu;
+	private AppMenu appMenu = new AppMenu();
 	private Record database;
 
 	/**

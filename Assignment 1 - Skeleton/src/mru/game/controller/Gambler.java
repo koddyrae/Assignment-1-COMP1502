@@ -18,22 +18,19 @@ public class Gambler {
 
     private boolean admittedToCasino = true; // True by default.
 
-    public ArrayList <Card> hand;
+    public ArrayList <Card> hand = new ArrayList<Card>();
 
     public Gambler (boolean isBanker) {
-    	hand = new ArrayList<>();
         this.balance = BANKERS_BALANCE;
     }
 
     public Gambler (String name) {
-    	hand = new ArrayList<>();
         this.name = name;
         this.balance = 100;
         this.numberOfWins = 0;
     }
 
     public Gambler (Player player) {
-    	hand = new ArrayList<>();
         this.name = player.getName();
         this.balance = player.getBalance();
         this.numberOfWins = player.getWins();
