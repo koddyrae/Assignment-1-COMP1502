@@ -15,6 +15,7 @@ public class GameManager {
 	 * packages.
 	 *
 	 * @author Bryce 'cybeR' Carson
+	 * @contributor Koddy Rae Madriaga
 	 * @throws IOException in the case that the database on-disk cannot be created
 	 *                     or accessed.
 	 */
@@ -90,6 +91,13 @@ public class GameManager {
 		return player;
 	}
 
+	/**
+	 * @author Bryce 'cybeR' Carson
+	 * @contributor Koddy Rae Madriaga
+	 * @param player player object that will be betting
+	 * @param casinoPatrons arraylist of gamblers on the table
+	 * @return arraylist of current gamblers at the table
+	 */
 	private ArrayList<Gambler> playPuntoBanco(Gambler player, ArrayList<Gambler> casinoPatrons) {
 		// Proceed with the games!
 		if (player.getAdmittedToCasino()) {
@@ -116,8 +124,7 @@ public class GameManager {
 				} else {
 					playAgain = appMenu.promptPlayAgain();
 				}
-			//} while (playAgainFlag); // While the user wishes to continue playing.
-			} while (playAgain != 'n');
+			} while (playAgain != 'n'); // While the user wishes to continue playing.
 		} else {
 			appMenu.refuseVisitor();
 		}

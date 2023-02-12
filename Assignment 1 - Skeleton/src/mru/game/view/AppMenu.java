@@ -5,14 +5,15 @@ import java.util.Scanner;
 import mru.game.controller.Gambler;
 
 /**
- * @author koddy Class for UI
+ * Class Structure containing UI elements. This class will be used to show the
+ * menus and sub menus to the user, it also prompts the user for the inputs and
+ * validates them
+ * @author Koddy Rae Madriaga
+ * @contributor Bryce 'cybeR' Carson
+ * 
  */
 public class AppMenu {
 
-	/**
-	 * This class will be used to show the menus and sub menus to the user It also
-	 * prompts the user for the inputs and validates them
-	 */
 	Scanner key;
 
 	public AppMenu() {
@@ -46,6 +47,7 @@ public class AppMenu {
 
 	/**
 	 * Method to print search menu
+	 * 
 	 * @return choice user choice to continue in submenu
 	 */
 	public char promptWithSearchMenu() {
@@ -83,8 +85,7 @@ public class AppMenu {
 			choice = key.nextLine().toLowerCase().charAt(0);
 			if (choice == 'p' || choice == 'b' || choice == 't') {
 				return choice;
-			}
-			else {
+			} else {
 				System.out.println("Your input was invalid, please try again.");
 			}
 		} while (choice != 'p' || choice != 'b' || choice != 't');
@@ -115,19 +116,16 @@ public class AppMenu {
 	 */
 	public void printPlayersByName(String results) {
 		String[] splittedLine = results.split(",");
-		System.out.printf("\t- PLAYER INFO -\n");
-		System.out.println("|=============|=============|=============|");
-		System.out.println("|=NAME========|=BALANCE=====|=# WINS======|");
-		
+
 		if (splittedLine.length == 1) {
-			System.out.println("|             |             |             |");
+			System.out.println("\nNo players are found with this name.\n");
+		} else {
+			System.out.printf("\t- PLAYER INFO -\n");
 			System.out.println("|=============|=============|=============|");
-			System.out.println("No players are found with this name.\n");
-		}
-		else {
+			System.out.println("|=NAME========|=BALANCE=====|=# WINS======|");
 			for (int i = 0; i < splittedLine.length; i += 3) {
-				System.out
-					.println("| " + splittedLine[i] + "| " + splittedLine[i + 1] + " | " + splittedLine[i + 2] + " |");
+				System.out.println(
+						"| " + splittedLine[i] + "| " + splittedLine[i + 1] + " | " + splittedLine[i + 2] + " |");
 				System.out.println("|-------------|------------|");
 			}
 		}
@@ -200,18 +198,17 @@ public class AppMenu {
 	 */
 	public char promptPlayAgain() {
 		char choice;
-			do {
-				System.out.print("Do you wish to play again? (Y/N)");
-				choice = key.nextLine().toLowerCase().charAt(0);
-				if (choice == 'y' || choice == 'n') {
-					return choice;
-				}
-				else {
-					System.out.println("Your input was invalid, please try again.");
-				}
-			} while (choice != 'y' || choice != 'n');
-			key.nextLine();
-			return choice;
+		do {
+			System.out.print("Do you wish to play again? (Y/N)");
+			choice = key.nextLine().toLowerCase().charAt(0);
+			if (choice == 'y' || choice == 'n') {
+				return choice;
+			} else {
+				System.out.println("Your input was invalid, please try again.");
+			}
+		} while (choice != 'y' || choice != 'n');
+		key.nextLine();
+		return choice;
 	}
 
 	/**

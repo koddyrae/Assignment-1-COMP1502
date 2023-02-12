@@ -6,6 +6,11 @@ import java.util.Scanner;
 
 import mru.game.controller.Gambler;
 
+/**
+ * Class for all file handling done in project
+ * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
+ *
+ */
 public class Record {
   private String filename;
 
@@ -33,10 +38,10 @@ public class Record {
     }
 
 	/**
-	 * @author Koddyrae User inputs a file name and if it exists, it will load a
-	 *         Player arraylist
+	 * User inputs a file name and if it exists, it will load a Player arraylist
+	 * @author Koddy Rae Madriaga 
 	 * @param filename, user inputed filename
-	 * @throws IOException
+	 * @throws IOException throws exception for problems that can occur with scanner and filereader
 	 *
 	 */
 	private void loadTextFile() throws IOException {
@@ -62,11 +67,10 @@ public class Record {
 	}
 
     /**
-     * @author Koddyrae
+     * @author Koddy Rae Madriaga
      * @contributor Bryce 'cybeR' Carson
      * Method used to save the listOfPlayers arraylist to a text file called CasinoInfo in the res folder
-     * @throws IOException
-     * TODO: this must be re-written using methods and packages we've been shown. He haven't been shown try-catch, so we can't use it.
+     * @throws IOException for IO problems that can occur with the fileoutputstream and printwriter
      */
     public void saveTextFile(ArrayList <Gambler> casinoPatrons) throws IOException {
 
@@ -76,23 +80,16 @@ public class Record {
         for(Gambler gambler : casinoPatrons) {
             patronData.add(new Player(gambler));
         }
-
-        try {
-            FileOutputStream fos = new FileOutputStream("res/CasinoInfo.txt");
-            PrintWriter pw = new PrintWriter(fos);
-
-            for (Player patron : patronData) {
-                pw.println(patron);
-            }
-
-            // Tidy up after ourselves.
-            pw.close();
-            fos.close();
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        
+        FileOutputStream fos = new FileOutputStream("res/CasinoInfo.txt");
+        PrintWriter pw = new PrintWriter(fos);
+        
+        for (Player patron : patronData) {
+        	pw.println(patron);
         }
-
+        
+        pw.close();
+        fos.close();
     }
 
 
@@ -112,7 +109,8 @@ public class Record {
 
 
 	/**
-	 * @author Koddyrae Method to return the player(s) in the arraylist by name
+	 * Method to return the player(s) in the arraylist by name
+	 * @author Koddy Rae Madriaga
 	 * @param name user inputted search name
 	 * @return name that contains the user input
 	 */
@@ -128,7 +126,8 @@ public class Record {
 	}
 	
 	/**
-	 * @author Koddyrae Method to return the top player(s) in the arraylist by wins
+	 * Method to return the top player(s) in the arraylist by wins
+	 * @author Koddy Rae Madriaga 
 	 * @return top player(s) based on order from arraylist
 	 */
 	public String findTopPlayers() {
@@ -152,6 +151,10 @@ public class Record {
 
 	}
 
+    /**
+     * Method to return an arraylist of gamblers
+     * @return arraylist of gamblers
+     */
     public ArrayList <Gambler> getPatrons() {
         ArrayList <Gambler> patrons = new ArrayList<Gambler>();
         for(Player record : listOfPlayers) {
