@@ -31,19 +31,22 @@ public class GameManager {
 			char mainMenuChoice = appMenu.promptWithMainMenu();
 			switch (mainMenuChoice) {
 			case 'p':
-				// preparePuntoBancoTable creates the Gambler object that
-				// playPuntoBanco requires as input.
-				Gambler focalGambler = preparePuntoBancoTable();
-				casinoPatrons = playPuntoBanco(focalGambler, casinoPatrons); // The focal player leaves the crowd of
-																				// patrons, plays a game, then rejoins
-																				// the crowd.
+				Gambler focalGambler = preparePuntoBancoTable(casinoPatrons);
+				
+				// The focal player leaves the crowd of patrons, plays a game, then rejoins the crowd.
+				// Do NOT think to compose the saveTextFile function with playPuntoBanco. That breaks certain updating logic.
+				casinoPatrons = playPuntoBanco(focalGambler, casinoPatrons);
+				
+				database.saveTextFile(casinoPatrons);
+				
 				break;
 			case 's':
 				searchRecords();
+				
 				break;
 			case 'e':
-				database.saveTextFile(casinoPatrons);
 				exitFlag = true;
+				
 				break;
 			}
 		} while (!exitFlag); // Raise flag to exit
@@ -55,13 +58,12 @@ public class GameManager {
 	 *
 	 * @author Bryce 'cybeR' Carson
 	 */
-	private Gambler preparePuntoBancoTable() {
+	private Gambler preparePuntoBancoTable(ArrayList <Gambler> casinoPatrons) {
 		final boolean RETURNING_PLAYER = true;
 		final boolean NEW_PLAYER = false;
-
-		// Prepare a Gambler object before starting the game.
+		
 		Gambler player;
-
+		
 		// Prompt the player for their name. If they are an existing player,
 		// their record in the database will be used to create the Gambler
 		// object representing them at the table, or they will have a new Player
@@ -69,10 +71,15 @@ public class GameManager {
 		// and exit. In the case that the Player has no money (or is in debt)
 		// refuse them entry to the casino.
 		String playerName = appMenu.promptName();
-		if (database.doesPlayerExist(playerName)) {
+		Gambler temporaryGambler = new Gambler(playerName);
+		
+		// Create a temporary gambler to check the player's balance.
+		if (casinoPatrons.contains(temporaryGambler)) {
 			// Create a Gambler object to check the player's balance is positive.
-			player = new Gambler(database.getPlayer(playerName.toUpperCase()));
+			player = casinoPatrons.get(casinoPatrons.indexOf(temporaryGambler));
+			
 			int playerBalance = player.getBalance();
+			
 			if (playerBalance > 0) {
 				appMenu.welcomeMessage(playerName, playerBalance, RETURNING_PLAYER);
 			} else {
@@ -93,19 +100,20 @@ public class GameManager {
 	private ArrayList<Gambler> playPuntoBanco(Gambler player, ArrayList<Gambler> casinoPatrons) {
 		// Proceed with the games!
 		if (player.getAdmittedToCasino()) {
-			// Start a new game of Punto Banco using the player
-			PuntoBancoGame currentGame = new PuntoBancoGame(player);
-
+			PuntoBancoGame currentGame;
+			
 			// Sitting at the casino table, players may place bets and wager on
 			// their bet, and then after the round plays out according to the
 			// rules of Punto Banco they are prompted whether or not to play
 			// again.
 			char playAgain;
-			//boolean playAgainFlag = true;
 			do {
+				// Start a new game of Punto Banco using the player
+				currentGame = new PuntoBancoGame(player);
+				
 				// Betting menu triggered.
 				char betChoice = appMenu.promptBet();
-				int betAmount = appMenu.promptWager();
+				int betAmount = appMenu.promptWager(player.getBalance());
 
 				currentGame.playRound(betChoice, betAmount);
 
@@ -114,10 +122,12 @@ public class GameManager {
 					appMenu.brokeDisplay(); // The player is broke (has no money).
 					playAgain = 'n';
 				} else {
+					// FIXME: Somehow, even though we're checking it, player's with a balance of zero are being readmitted to the casino floor.
+					System.out.println(player);
+					
 					playAgain = appMenu.promptPlayAgain();
 				}
-			//} while (playAgainFlag); // While the user wishes to continue playing.
-			} while (playAgain != 'n');
+			} while (playAgain != 'n' && player.getBalance() > 0); // Only loop while they WANT to play and CAN. People who want to play but CANT play MUST NOT play.
 		} else {
 			appMenu.refuseVisitor();
 		}
@@ -139,12 +149,12 @@ public class GameManager {
 	}
 
 	/**
-	 * Search the database for particular records _until_ the player wants to return
-	 * to the main menu.
+	 * Search the database for particular records, then return the player to the main menu regardless.
 	 *
 	 * @author Bryce 'cybeR' Carson
+	 * @throws IOException 
 	 */
-	private void searchRecords() {
+	private void searchRecords() throws IOException {
 		char searchChoice = appMenu.promptWithSearchMenu();
 		switch (searchChoice) {
 		case 't':

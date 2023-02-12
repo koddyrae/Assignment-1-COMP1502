@@ -97,6 +97,15 @@ public class Gambler {
     }
 
     public boolean equals(Gambler anyGambler) {
-        return this.getName() == anyGambler.getName();
+    	// Case-insensitively check if the name is the same.
+        return this.getName().toUpperCase() == anyGambler.getName().toUpperCase();
+    }
+    
+    /** A bare-bones toString method for debugging purposes.
+     * @author Bryce 'cybeR' Carson
+     * @returns String the string to print.
+     */
+    public String toString() {
+    	return this.getName() + " " + this.getBalance() + " " + this.getWins();
     }
 }

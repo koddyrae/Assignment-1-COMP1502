@@ -73,22 +73,24 @@ public class AppMenu {
 	 * @return choice user choice to continue in game menu
 	 */
 	public char promptBet() {
+		System.out.println("Who do you want to bet on: ");
+		System.out.println("\n\t(P) Player Wins");
+		System.out.println(  "\t(B) Banker Wins");
+		System.out.println(  "\t(T) Tie Game");
+		
 		char choice;
 		do {
-			System.out.println("Who do you want to bet on: ");
-			System.out.println("\n\t(P) Player Wins");
-			System.out.println("\t(B) Banker Wins");
-			System.out.println("\t(T) Tie Game");
 			System.out.print("\nEnter a choice: ");
 			choice = key.nextLine().toLowerCase().charAt(0);
-			if (choice == 'p' || choice == 'b' || choice == 't') {
-				return choice;
-			}
-			else {
+			
+			// If the choice is NOT p, b, or t, warn the user. We will do-while until the input is valid.
+			if ( !(choice == 'p' || choice == 'b' || choice == 't') ) {
 				System.out.println("Your input was invalid, please try again.");
 			}
-		} while (choice != 'p' || choice != 'b' || choice != 't');
-		key.nextLine();
+		} while ( !(choice == 'p' || choice == 'b' || choice == 't') );
+		
+		// There is no need to flush the keyboard in this prompt because we acquire the entire line, then we acquire the first character. The line separator ("garbage") is already flushed.
+		
 		return choice;
 	}
 
@@ -182,14 +184,28 @@ public class AppMenu {
 	}
 
 	/**
-	 * Method to ask user for bet amount
+	 * Method to ask user for bet amount, with only valid amounts permitted.
 	 * 
+	 * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga 
 	 * @return bet amount
 	 */
-	public int promptWager() {
-		System.out.print("How much do you want to bet this round?");
-		int bet = key.nextInt();
-		key.nextLine();
+	public int promptWager(int playerBalance) {
+		System.out.println("How much do you wager on your bet?");
+		
+		int bet = 0;
+		
+		// Repeatedly prompt the user for a valid bet (must be positive and must be an amount they carry).
+		do {
+			System.out.print("Enter a positive, whole dollar amount (an intenger): ");
+			bet = key.nextInt();
+			
+			if(  !(bet > 0 && bet <= playerBalance) ) {
+				System.out.println("You cannot bet zero or an amount greater than your current balance ($" + playerBalance + ").");
+			}
+		} while( !(bet > 0 && bet <= playerBalance) );
+		
+		key.nextLine(); // Flush keyboard output.
+		
 		return bet;
 	}
 
@@ -223,7 +239,7 @@ public class AppMenu {
 	 */
 	public void welcomeMessage(String name, int balance, boolean returningPlayer) {
 		String maybeBack = returningPlayer ? "back " : "";
-		String maybeNew = returningPlayer ? " initial" : "";
+		String maybeNew = returningPlayer ? "" : " initial"; // The truth-table is the reverse of the above line.
 		System.out.println("**************************************************");
 		System.out.println(
 				"***  Welcome " + maybeBack + name + "   --- Your" + maybeNew + " balance is: " + balance + "$    ***");

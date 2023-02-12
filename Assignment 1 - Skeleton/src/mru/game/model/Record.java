@@ -46,12 +46,18 @@ public class Record {
 			FileReader fr = new FileReader(filename);
 			Scanner scanner = new Scanner(fr);
 
+			// Empty the list of players if it already exits.
+			if(listOfPlayers.size() > 0) {
+				listOfPlayers.removeAll(listOfPlayers);
+			}
+			
+			// (Re-)populate the list of players from disk.
 			while (scanner.hasNextLine()) {
 				String[] lineData = scanner.nextLine().split(",", 3);
 				Player player = new Player(lineData[0], Integer.parseInt(lineData[1]), Integer.parseInt(lineData[2]));
 
 				// Add the player to the list in the global scope.
-				this.listOfPlayers.add(player);
+				listOfPlayers.add(player);
 			}
 
 			scanner.close();
@@ -72,13 +78,15 @@ public class Record {
 
         // Restructure the data we need into what we care about for on-disk storage.
         ArrayList <Player> patronData =	new ArrayList<Player>();
-        
         for(Gambler gambler : casinoPatrons) {
             patronData.add(new Player(gambler));
         }
 
+        // Write the data to disk, overwriting any existing data.
+        // FIXME: this does not overwrite data, it appends.
+        // FIXME: because we were not explicitly taught try-catch, we need to simply use "throws IOException", and not use try-catch. This needs to be addressed program-wide. NO try-catch, Koddy, buddy, unless I'm wrong and we were shown it.
         try {
-            FileOutputStream fos = new FileOutputStream("res/CasinoInfo.txt");
+            FileOutputStream fos = new FileOutputStream(filename);
             PrintWriter pw = new PrintWriter(fos);
 
             for (Player patron : patronData) {
@@ -115,9 +123,13 @@ public class Record {
 	 * @author Koddyrae Method to return the player(s) in the arraylist by name
 	 * @param name user inputted search name
 	 * @return name that contains the user input
+	 * @throws IOException 
 	 */
-	public String findPlayersByName(String name) {
+	public String findPlayersByName(String name) throws IOException {
 		String result = "";
+		
+		// Reload the data from disk before we use it.
+		loadTextFile();
 
 		for (int i = 0; i < listOfPlayers.size(); i++) {
 			if (listOfPlayers.get(i).getName().toUpperCase().equals(name.toUpperCase())) {
@@ -158,6 +170,13 @@ public class Record {
             patrons.add(new Gambler(record)); // Create a gambler from the data on record.
         }
 
+        // FIXME: DEBUG: print the patrons.
+        System.out.println("DEBUG: Record.getPatrons(): this is the listOfPlayers that was loaded, and converted into casinoPatrons (Gambler arrayList).");
+        for(Gambler patron : patrons) {
+        	System.out.println(patron);
+        }
+        System.out.println("");
+        
         return patrons;
     }
 
