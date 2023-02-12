@@ -222,11 +222,11 @@ public class AppMenu {
 	 * @param returningPlayer checks player is new or not
 	 */
 	public void welcomeMessage(String name, int balance, boolean returningPlayer) {
-		String maybeBack = returningPlayer ? " back " : "";
-		String maybeNew = returningPlayer ? " initial " : "";
+		String maybeBack = returningPlayer ? "back " : "";
+		String maybeNew = returningPlayer ? " initial" : "";
 		System.out.println("**************************************************");
 		System.out.println(
-				"***  Welcome " + maybeBack + name + "   --- Your" + maybeNew + "balance is: " + balance + "$    ***");
+				"***  Welcome " + maybeBack + name + "   --- Your" + maybeNew + " balance is: " + balance + "$    ***");
 		System.out.println("**************************************************");
 	}
 
@@ -252,7 +252,7 @@ public class AppMenu {
 				+ " POINTS: " + banker.getScore() + "+|");
 
 		System.out.println("+==================+==================+");
-		System.out.println("+|" + player1.getName() + maybeWin + "$" + amountWon + "|+");
+		System.out.println("+|" + player1.getName() + maybeWin + "$ " + amountWon + " |+");
 		System.out.println("+==================+==================+");
 
 	}
