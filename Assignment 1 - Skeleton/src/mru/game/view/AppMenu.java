@@ -240,12 +240,6 @@ public class AppMenu {
 	 */
 	public void roundDisplay(Gambler player1, Gambler banker, int amountWon, boolean result) {
 		String maybeWin = result ? " Won " : " Lose ";
-		int max = 0;
-		if (player1.getHand().size() > banker.getHand().size()) {
-			max = player1.getHand().size();
-		} else {
-			max = banker.getHand().size();
-		}
 
 		System.out.printf("\t - PUNTO BANCO -\n");
 		System.out.println("+==================+==================+");
