@@ -99,8 +99,11 @@ public class GameManager {
 
 	private ArrayList<Gambler> playPuntoBanco(Gambler player, ArrayList<Gambler> casinoPatrons) {
 		// Proceed with the games!
-		if (player.getAdmittedToCasino()) {
+      if (player.getAdmittedToCasino() && player.getBalance() > 0) {
 			PuntoBancoGame currentGame;
+
+      // Start a new game of Punto Banco using the player
+      currentGame = new PuntoBancoGame(player);
 			
 			// Sitting at the casino table, players may place bets and wager on
 			// their bet, and then after the round plays out according to the
@@ -108,9 +111,6 @@ public class GameManager {
 			// again.
 			char playAgain;
 			do {
-				// Start a new game of Punto Banco using the player
-				currentGame = new PuntoBancoGame(player);
-				
 				// Betting menu triggered.
 				char betChoice = appMenu.promptBet();
 				int betAmount = appMenu.promptWager(player.getBalance());
@@ -119,10 +119,10 @@ public class GameManager {
 
 				// Check that the player has not lost all of their money.
 				if (player.getBalance() <= 0) {
+            player.setAdmittedToCasino(false);
 					appMenu.brokeDisplay(); // The player is broke (has no money).
 					playAgain = 'n';
 				} else {
-					// FIXME: Somehow, even though we're checking it, player's with a balance of zero are being readmitted to the casino floor.
 					System.out.println(player);
 					
 					playAgain = appMenu.promptPlayAgain();
@@ -144,6 +144,8 @@ public class GameManager {
 		} else {
 			casinoPatrons.add(player);
 		}
+
+    database.saveTextFile(casinoPatrons);
 
 		return casinoPatrons;
 	}
