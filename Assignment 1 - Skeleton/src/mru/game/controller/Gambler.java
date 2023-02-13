@@ -97,6 +97,15 @@ public class Gambler {
         this.admittedToCasino = admittedToCasino;
     }
 
+    @Overrides
+    public boolean equals(Object o) {
+        if(!(o instanceof Gambler)) {
+            return false;
+        } else {
+            return this.equals(o);
+        }
+    }
+
     public boolean equals(Gambler anyGambler) {
     	// Case-insensitively check if the name is the same.
         return this.getName().toUpperCase() == anyGambler.getName().toUpperCase();
