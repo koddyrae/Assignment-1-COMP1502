@@ -152,10 +152,10 @@ public class Record {
 	public ArrayList<Gambler> getPatrons() throws IOException {
 
 		// Update the listOfPlayers from disk.
-		loadTextFile();
+		ArrayList<Player> recordsLoadedFromDisk = loadTextFile();
 
 		ArrayList<Gambler> patrons = new ArrayList<Gambler>();
-		for (Player record : listOfPlayers) {
+		for (Player record : recordsLoadedFromDisk) {
 			patrons.add(new Gambler(record)); // Create a gambler from the data on record.
 		}
 

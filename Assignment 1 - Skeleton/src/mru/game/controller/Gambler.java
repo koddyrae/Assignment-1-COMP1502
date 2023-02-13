@@ -97,18 +97,27 @@ public class Gambler {
         this.admittedToCasino = admittedToCasino;
     }
 
-    @Overrides
+    @Override
     public boolean equals(Object o) {
-        if(!(o instanceof Gambler)) {
+        // Return true if the object is being compared with itself.
+        if (this == o) {
+            return true;
+        }
+
+        // Return false if the object is not of the same type.
+        if ( !(o instanceof Gambler)) {
+            System.out.println("DEBUG: Gambler.equals(Object o): you done called the equals method with something that couldn't be safely type casted to Gambler. Don't do that.");
             return false;
         } else {
-            return this.equals(o);
-        }
-    }
+            // Type cast and test the value of the name field.
+            Gambler tempGambler = (Gambler) o;
+            String thisName = this.getName().toUpperCase();
+            String tempGamblerName = tempGambler.getName().toUpperCase();
 
-    public boolean equals(Gambler anyGambler) {
-    	// Case-insensitively check if the name is the same.
-        return this.getName().toUpperCase() == anyGambler.getName().toUpperCase();
+            // Finally make the name field value comparison (use the
+            // String.equals(String s) method).
+            return thisName.equals(tempGamblerName);
+        }
     }
     
     /** A bare-bones toString method for debugging purposes.

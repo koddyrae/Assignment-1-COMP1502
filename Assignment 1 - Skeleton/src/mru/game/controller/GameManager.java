@@ -24,7 +24,7 @@ public class GameManager {
      *                     or accessed.
      */
     public GameManager() throws IOException {
-        ArrayList<Gambler> casinoPatrons = DATABASE.getPatrons();
+        ArrayList<Gambler> casinoPatrons;
 
         // Main application menu loop.
         boolean exitFlag = false;
@@ -37,12 +37,15 @@ public class GameManager {
 
                 // The focal player leaves the crowd of patrons, plays a game, then rejoins the crowd.
                 // Do NOT think to compose the saveTextFile function with playPuntoBanco. That breaks certain updating logic.
-                casinoPatrons = playPuntoBanco(preparePuntoBancoTable(casinoPatrons, DATABASE), casinoPatrons);
+                Gambler focalGambler = preparePuntoBancoTable(casinoPatrons, DATABASE); 
+                casinoPatrons = playPuntoBanco(focalGambler, casinoPatrons);
 
+                // Update the database on disk.
                 DATABASE.saveTextFile(casinoPatrons);
 
                 break;
             case 's':
+            	casinoPatrons = DATABASE.getPatrons();
                 searchRecords();
 
                 break;
@@ -146,7 +149,7 @@ public class GameManager {
 
                     playAgain = APP_MENU.promptPlayAgain();
                 }
-            } while (playAgain != 'n' && player.getBalance() > 0); // Only loop while they WANT to play and CAN. People who want to play but CANT play MUST NOT play.
+            } while (playAgain != 'n' && player.getBalance() > 0 && player.getAdmittedToCasino()); // Only loop while they WANT to play and CAN. People who want to play but CANT play MUST NOT play.
         } else {
             APP_MENU.refuseVisitor();
         }

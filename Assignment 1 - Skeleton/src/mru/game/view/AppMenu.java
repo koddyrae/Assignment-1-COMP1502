@@ -160,13 +160,13 @@ public class AppMenu {
 	 * @return choice user choice when back at main menu
 	 */
 	public void brokeDisplay() {
-		System.out.println("You have no money to play...");
-		System.out.println("Returning to main menu...");
+		System.out.println("You have no money to play with!");
+		System.out.println("Returning to main menu.");
 	}
 
 	public void refuseVisitor() {
-		System.out.println("You are unable to play...");
-		System.out.println("Returning to main menu...");
+		System.out.println("You have no money to play with!");
+		System.out.println("Returning to main menu.");
 	}
 
 	/**
