@@ -7,63 +7,60 @@ import java.util.Scanner;
 import mru.game.controller.Gambler;
 
 public class Record {
-	private String filename;
+    final private String FILE_PATH = "res/CasinoInfo.txt";
+    
+	private ArrayList<Player> listOfPlayers;
 
-	private ArrayList<Player> listOfPlayers = new ArrayList<Player>();
-
-	public Record(String filename) throws IOException {
-		this.filename = filename;
-		loadTextFile(); // NOTE: setListOfPlayers is done in this method without a setter because it is
-						// done privately.
+	public Record() throws IOException {
+		this.listOfPlayers = loadTextFile();
 	}
 
 	/**
 	 * @author Bryce 'cybeR' Carson
-	 * @param name: an uppercase String of the player object to get.
+	 * @param name: the upper case name of the Player object to get.
 	 * @return Player: a Player object
 	 */
 	public Player getPlayer(String name) {
 		Player result = null;
 		for (Player player : listOfPlayers) {
 			if (player.getName().toUpperCase().equals(name)) {
-				result = player; //this line isnt getting accessed in the test
+				result = player; //this line isn't getting accessed in the test
 			}
 		}
 		return result;
 	}
 
 	/**
-	 * @author Koddy Rae Madriaga User inputs a file name and if it exists, it will
-	 *         load a Player arraylist
-	 * @param filename, user inputed filename
-	 * @throws IOException
-	 *
+	 * Loads a text file from disk, if it exists. If the file does not exist, it is created.
+	 * @author Koddy Rae Madriaga
+	 * @throws FileNotFoundException, IOException
+	 * @return ArrayList<Player> an array list of player objects.
 	 */
-	private void loadTextFile() throws IOException {
-		File file = new File(filename);
+	private ArrayList<Player> loadTextFile() throws FileNotFoundException, IOException {
+		File file = new File(FILE_PATH);
+		
+		ArrayList <Player> playerRecordsFromDisk = new ArrayList<Player>();
 
 		if (file.exists()) {
-			FileReader fr = new FileReader(filename);
+			FileReader fr = new FileReader(FILE_PATH);
 			Scanner scanner = new Scanner(fr);
 
-			// Empty the list of players if it already exits.
-			if (listOfPlayers.size() > 0) {
-				listOfPlayers.removeAll(listOfPlayers);
-			}
-
-			// (Re-)populate the list of players from disk.
 			while (scanner.hasNextLine()) {
 				String[] lineData = scanner.nextLine().split(",", 3);
 				Player player = new Player(lineData[0], Integer.parseInt(lineData[1]), Integer.parseInt(lineData[2]));
 
 				// Add the player to the list in the global scope.
-				listOfPlayers.add(player);
+				playerRecordsFromDisk.add(player);
 			}
 
 			scanner.close();
+			
+			return playerRecordsFromDisk;
+					
 		} else {
 			File newFile = new File("res/CasinoInfo.txt");
 			newFile.createNewFile();
+			return new ArrayList<Player>();
 		}
 	}
 
@@ -73,27 +70,16 @@ public class Record {
 	 *              arraylist to a text file called CasinoInfo in the res folder
 	 * @throws IOException
 	 */
-	public void saveTextFile(ArrayList<Gambler> casinoPatrons) throws IOException {
+	public void saveTextFile(ArrayList<Gambler> casinoPatrons) throws FileNotFoundException {
+		// NOTE: The simplest constructor is the correct one; this overrides data to the specified file, exactly what we want.
+		PrintWriter pw = new PrintWriter(FILE_PATH);
 
-		// Restructure the data we need into what we care about for on-disk storage.
-		ArrayList<Player> patronData = new ArrayList<Player>();
 		for (Gambler gambler : casinoPatrons) {
-			patronData.add(new Player(gambler));
-		}
-
-		// Write the data to disk, overwriting any existing data.
-		// FIXME: this does not overwrite data, it appends.
-		FileOutputStream fos = new FileOutputStream(filename);
-		PrintWriter pw = new PrintWriter(fos, false); // testing writing becasue i know true means to append
-
-		for (Player patron : patronData) {
-			pw.println(patron);
+			pw.println(new Player(gambler));
 		}
 
 		// Tidy up after ourselves.
 		pw.close();
-		fos.close();
-
 	}
 
 	/**

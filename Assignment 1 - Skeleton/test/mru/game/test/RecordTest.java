@@ -1,6 +1,5 @@
 package mru.game.test;
 
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,7 +21,7 @@ class RecordTest {
 	
 	@BeforeEach
 	void setUp() throws IOException {
-		db = new Record("res/CasinoInfo.txt");
+		db = new Record();
 		listOfTestPlayers = new ArrayList<>();
 		listOfTestPlayers.add(new Player("Eli", 1000, 18));
 		listOfTestGamblers = new ArrayList<>();

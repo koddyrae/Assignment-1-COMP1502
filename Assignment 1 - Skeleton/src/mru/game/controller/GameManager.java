@@ -11,8 +11,8 @@ import mru.game.model.Record;
  *
  */
 public class GameManager {
-    private AppMenu appMenu = new AppMenu();
-    private Record database;
+    final private AppMenu APP_MENU = new AppMenu();
+    final private Record DATABASE = new Record();
 
     /**
      * Creates the application, calling methods as necessary from the model and view
@@ -24,26 +24,22 @@ public class GameManager {
      *                     or accessed.
      */
     public GameManager() throws IOException {
-        // Every instance of the application needs to associate with the
-        // database.
-        final String FILE_PATH = "res/CasinoInfo.txt";
-        database = new Record(FILE_PATH);
-        ArrayList<Gambler> casinoPatrons = database.getPatrons();
+        ArrayList<Gambler> casinoPatrons = DATABASE.getPatrons();
 
         // Main application menu loop.
         boolean exitFlag = false;
         do {
-            char mainMenuChoice = appMenu.promptWithMainMenu();
+            char mainMenuChoice = APP_MENU.promptWithMainMenu();
             switch (mainMenuChoice) {
             case 'p':
                 // Casino patron list is updated from disk any time the user of the program wants to play a game.
-                casinoPatrons = database.getPatrons();
+                casinoPatrons = DATABASE.getPatrons();
 
                 // The focal player leaves the crowd of patrons, plays a game, then rejoins the crowd.
                 // Do NOT think to compose the saveTextFile function with playPuntoBanco. That breaks certain updating logic.
-                casinoPatrons = playPuntoBanco(preparePuntoBancoTable(casinoPatrons), casinoPatrons);
+                casinoPatrons = playPuntoBanco(preparePuntoBancoTable(casinoPatrons, DATABASE), casinoPatrons);
 
-                database.saveTextFile(casinoPatrons);
+                DATABASE.saveTextFile(casinoPatrons);
 
                 break;
             case 's':
@@ -64,7 +60,7 @@ public class GameManager {
      *
      * @author Bryce 'cybeR' Carson
      */
-    private Gambler preparePuntoBancoTable(ArrayList <Gambler> casinoPatrons) {
+    private Gambler preparePuntoBancoTable(ArrayList <Gambler> casinoPatrons, Record database) {
         final boolean RETURNING_PLAYER = true;
         final boolean NEW_PLAYER = false;
 
@@ -76,17 +72,14 @@ public class GameManager {
         // object created for them in the database when the time comes to save
         // and exit. In the case that the Player has no money (or is in debt)
         // refuse them entry to the casino.
-        String playerName = appMenu.promptName();
+        String playerName = APP_MENU.promptName();
+        
+        boolean returningPlayerFlag = database.doesPlayerExist(playerName);
 
-        // Create a temporary gambler to check if they are a returning player.
-        Gambler temporaryGambler = new Gambler(playerName);
-        boolean returningPlayerFlag = casinoPatrons.contains(temporaryGambler);
-
-        System.out.println("Player found in database/casinoPatrons?: " + returningPlayerFlag);
+        System.out.println("Player found in database?: " + returningPlayerFlag);
 
         // FIXME: the condition is failing when it shouldn't. The
-        // Gambler.equals() method, the Record.saveTextFile() method, or
-        // something else is culprit.
+        // Record.saveTextFile() method, or something else is culprit.
         if (returningPlayerFlag) {
             // Recreate the Gambler from the on-disk state if the player is
             // found in our database. indexOf uses the equals method, so we're
@@ -95,13 +88,13 @@ public class GameManager {
             // element of the array list of Gambler objects by-name, which is
             // case-insensitive. This test should be robust, but yet we have to
             // FIXME.
-            player = casinoPatrons.get(casinoPatrons.indexOf(temporaryGambler));
+            player = casinoPatrons.get(casinoPatrons.indexOf(new Gambler(playerName)));
 
             int playerBalance = player.getBalance();
 
             // Ensure the returning player HAS money to play with.
             if (playerBalance > 0) {
-                appMenu.welcomeMessage(playerName, playerBalance, RETURNING_PLAYER);
+                APP_MENU.welcomeMessage(playerName, playerBalance, RETURNING_PLAYER);
             } else {
                 /*
                  * The player is not admitted to the casino. This is not magical because it's a
@@ -111,7 +104,7 @@ public class GameManager {
             }
         } else {
             player = new Gambler(playerName);
-            appMenu.welcomeMessage(playerName, player.getBalance(), NEW_PLAYER);
+            APP_MENU.welcomeMessage(playerName, player.getBalance(), NEW_PLAYER);
         }
 
         return player;
@@ -138,24 +131,24 @@ public class GameManager {
             char playAgain;
             do {
                 // Betting menu triggered.
-                char betChoice = appMenu.promptBet();
-                int betAmount = appMenu.promptWager(player.getBalance());
+                char betChoice = APP_MENU.promptBet();
+                int betAmount = APP_MENU.promptWager(player.getBalance());
 
                 currentGame.playRound(betChoice, betAmount);
 
                 // Check that the player has not lost all of their money.
                 if (player.getBalance() <= 0) {
                     player.setAdmittedToCasino(false);
-                    appMenu.brokeDisplay(); // The player is broke (has no money).
+                    APP_MENU.brokeDisplay(); // The player is broke (has no money).
                     playAgain = 'n';
                 } else {
                     System.out.println(player);
 
-                    playAgain = appMenu.promptPlayAgain();
+                    playAgain = APP_MENU.promptPlayAgain();
                 }
             } while (playAgain != 'n' && player.getBalance() > 0); // Only loop while they WANT to play and CAN. People who want to play but CANT play MUST NOT play.
         } else {
-            appMenu.refuseVisitor();
+            APP_MENU.refuseVisitor();
         }
 
         // Thank you, come again! If a player has been to the casino before,
@@ -182,16 +175,16 @@ public class GameManager {
      * @throws IOException
      */
     private void searchRecords() throws IOException {
-        char searchChoice = appMenu.promptWithSearchMenu();
+        char searchChoice = APP_MENU.promptWithSearchMenu();
         switch (searchChoice) {
         case 't':
-            appMenu.printTopPlayers(database.findTopPlayers());
-            appMenu.promptEnterToContinue();
+            APP_MENU.printTopPlayers(DATABASE.findTopPlayers());
+            APP_MENU.promptEnterToContinue();
             break;
         case 'n':
-            String searchName = appMenu.promptName();
-            appMenu.printPlayersByName(database.findPlayersByName(searchName));
-            appMenu.promptEnterToContinue();
+            String searchName = APP_MENU.promptName();
+            APP_MENU.printPlayersByName(DATABASE.findPlayersByName(searchName));
+            APP_MENU.promptEnterToContinue();
             break;
         }
     }

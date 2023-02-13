@@ -11,8 +11,8 @@ public class Gambler {
     final private int BANKERS_BALANCE = -1;
     final private String BANKERS_NAME = "BANKER";
 
-    private String name = BANKERS_NAME;
-    public int balance = 0;
+    private String name;
+    private int balance = 0;
     private int numberOfWins = 0;
     private int score = 0;
 
@@ -22,6 +22,7 @@ public class Gambler {
 
     public Gambler (boolean isBanker) {
         this.balance = BANKERS_BALANCE;
+        this.name = BANKERS_NAME;
     }
 
     public Gambler (String name) {
