@@ -5,14 +5,12 @@ import java.util.Scanner;
 import mru.game.controller.Gambler;
 
 /**
- * @author koddy Class for UI
+ * @author Koddy Rae Madriaga
+ * Class for UI
+ * This class will be used to show the menus and sub menus to the user
+ * It also prompts the user for the inputs and validates them
  */
 public class AppMenu {
-
-	/**
-	 * This class will be used to show the menus and sub menus to the user It also
-	 * prompts the user for the inputs and validates them
-	 */
 	Scanner key;
 
 	public AppMenu() {

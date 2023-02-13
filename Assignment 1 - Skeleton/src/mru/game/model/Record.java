@@ -87,7 +87,7 @@ public class Record {
         // FIXME: because we were not explicitly taught try-catch, we need to simply use "throws IOException", and not use try-catch. This needs to be addressed program-wide. NO try-catch, Koddy, buddy, unless I'm wrong and we were shown it.
         try {
             FileOutputStream fos = new FileOutputStream(filename);
-            PrintWriter pw = new PrintWriter(fos);
+            PrintWriter pw = new PrintWriter(fos, false); //testing writing becasue i know true means to append
 
             for (Player patron : patronData) {
                 pw.println(patron);

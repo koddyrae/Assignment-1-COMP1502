@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import mru.game.view.AppMenu;
 import mru.game.model.Record;
 
+/**
+ * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
+ *
+ */
 public class GameManager {
     private AppMenu appMenu = new AppMenu();
     private Record database;
@@ -15,6 +19,7 @@ public class GameManager {
      * packages.
      *
      * @author Bryce 'cybeR' Carson
+     * @contributor Koddy Rae Madriaga
      * @throws IOException in the case that the database on-disk cannot be created
      *                     or accessed.
      */
@@ -111,7 +116,13 @@ public class GameManager {
 
         return player;
     }
-
+    
+    /**
+     * Method to start the puntoBanco game
+     * @param player main player object that is being used for game
+     * @param casinoPatrons arraylist of players currently at the table
+     * @return arraylist of players at table
+     */
     private ArrayList<Gambler> playPuntoBanco(Gambler player, ArrayList<Gambler> casinoPatrons) {
         // Proceed with the games!
         if (player.getAdmittedToCasino() && player.getBalance() > 0) {
@@ -167,6 +178,7 @@ public class GameManager {
      * Search the database for particular records, then return the player to the main menu regardless.
      *
      * @author Bryce 'cybeR' Carson
+     * @contributor Koddy Rae Madriaga
      * @throws IOException
      */
     private void searchRecords() throws IOException {
