@@ -164,7 +164,11 @@ public class Record {
 
 	}
 
-    public ArrayList <Gambler> getPatrons() {
+    public ArrayList <Gambler> getPatrons() throws IOException {
+
+        // Update the listOfPlayers from disk.
+        loadTextFile();
+
         ArrayList <Gambler> patrons = new ArrayList<Gambler>();
         for(Player record : listOfPlayers) {
             patrons.add(new Gambler(record)); // Create a gambler from the data on record.
