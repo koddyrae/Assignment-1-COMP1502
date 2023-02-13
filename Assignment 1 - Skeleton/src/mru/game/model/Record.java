@@ -33,7 +33,7 @@ public class Record {
     }
 
 	/**
-	 * @author Koddyrae User inputs a file name and if it exists, it will load a
+	 * @author Koddy Rae Madriaga User inputs a file name and if it exists, it will load a
 	 *         Player arraylist
 	 * @param filename, user inputed filename
 	 * @throws IOException
@@ -68,7 +68,7 @@ public class Record {
 	}
 
     /**
-     * @author Koddyrae
+     * @author Koddy Rae Madriaga
      * @contributor Bryce 'cybeR' Carson
      * Method used to save the listOfPlayers arraylist to a text file called CasinoInfo in the res folder
      * @throws IOException
@@ -120,7 +120,7 @@ public class Record {
 
 
 	/**
-	 * @author Koddyrae Method to return the player(s) in the arraylist by name
+	 * @author Koddy Rae Madriaga Method to return the player(s) in the arraylist by name
 	 * @param name user inputted search name
 	 * @return name that contains the user input
 	 * @throws IOException 
@@ -140,7 +140,7 @@ public class Record {
 	}
 	
 	/**
-	 * @author Koddyrae Method to return the top player(s) in the arraylist by wins
+	 * @author Koddy Rae Madriaga Method to return the top player(s) in the arraylist by wins
 	 * @return top player(s) based on order from arraylist
 	 */
 	public String findTopPlayers() {
@@ -164,6 +164,11 @@ public class Record {
 
 	}
 
+    /**
+     * Method to return an arraylist of current patrons 
+     * @return arraylist of patrons
+     * @throws IOException
+     */
     public ArrayList <Gambler> getPatrons() throws IOException {
 
         // Update the listOfPlayers from disk.
