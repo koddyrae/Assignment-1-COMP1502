@@ -79,7 +79,6 @@ public class GameManager {
         
         boolean returningPlayerFlag = database.doesPlayerExist(playerName);
 
-        System.out.println("Player found in database?: " + returningPlayerFlag);
 
         // FIXME: the condition is failing when it shouldn't. The
         // Record.saveTextFile() method, or something else is culprit.

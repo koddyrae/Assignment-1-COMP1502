@@ -160,12 +160,12 @@ public class Record {
 		}
 
 		// FIXME: DEBUG: print the patrons.
-		System.out.println(
-				"DEBUG: Record.getPatrons(): this is the listOfPlayers that was loaded, and converted into casinoPatrons (Gambler arrayList).");
-		for (Gambler patron : patrons) {
-			System.out.println(patron);
-		}
-		System.out.println("");
+//		System.out.println(
+//				"DEBUG: Record.getPatrons(): this is the listOfPlayers that was loaded, and converted into casinoPatrons (Gambler arrayList).");
+//		for (Gambler patron : patrons) {
+//			System.out.println(patron);
+//		}
+//		System.out.println("");
 
 		return patrons;
 	}
