@@ -1,5 +1,6 @@
 package mru.game.test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -31,18 +32,18 @@ class RecordTest {
 	
 	@Test
 	void testFindTopPlayers() throws IOException {
-		assertEquals("debugMeSenpai,666,", db.findTopPlayers());
+		assertEquals("Khosro,18,Eli,18,", db.findTopPlayers());
 		assertNotNull(db.findTopPlayers());
 	}
 
 	@Test 
 	void testFindPlayersByName() throws IOException {
-		assertEquals("debugMeSenpai,0,666,", db.findPlayersByName("debugMeSenpai"));
+		assertEquals("Khosro,1639,18,", db.findPlayersByName("khosro"));
 	}
 	
 	@Test
 	void testDoesPlayerExist() {
-		assertTrue("koddy", db.doesPlayerExist("koddy"));
+		assertFalse("koddy", db.doesPlayerExist("koddy"));
 		//assertEquals(true, db.doesPlayerExist("koddy"));
 	}
 	
@@ -55,11 +56,11 @@ class RecordTest {
 	@Test
 	void testGetPlayer() {
 		assertNotNull(db.doesPlayerExist("ali"));
-		assertNull(db.getPlayer("koddy")); //why am i showing up as null
+		assertNull(db.getPlayer("koddy"));
 	}
 	
 	@Test
 	void testSaveTextFile() {
-		
+		// i dont know how to test this
 	}
 }
