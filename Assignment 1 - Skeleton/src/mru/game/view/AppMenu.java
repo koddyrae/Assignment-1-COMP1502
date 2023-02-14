@@ -5,11 +5,8 @@ import java.util.Scanner;
 import mru.game.controller.Gambler;
 
 /**
- * @author Koddy Rae Madriaga
- * @contributor Bryce 'cybeR' Carson
- * Class for UI
- * This class will be used to show the menus and sub menus to the user
- * It also prompts the user for the inputs and validates them
+ * @author Koddy Rae Madriaga, Bryce 'cybeR' Carson 
+ * Class for UI This class will be used to show the menus and sub menus to the user It also prompts the user for the inputs and validates them
  */
 public class AppMenu {
 	Scanner key;
@@ -45,6 +42,7 @@ public class AppMenu {
 
 	/**
 	 * Method to print search menu
+	 * 
 	 * @return choice user choice to continue in submenu
 	 */
 	public char promptWithSearchMenu() {
@@ -74,22 +72,25 @@ public class AppMenu {
 	public char promptBet() {
 		System.out.println("Who do you want to bet on: ");
 		System.out.println("\n\t(P) Player Wins");
-		System.out.println(  "\t(B) Banker Wins");
-		System.out.println(  "\t(T) Tie Game");
-		
+		System.out.println("\t(B) Banker Wins");
+		System.out.println("\t(T) Tie Game");
+
 		char choice;
 		do {
 			System.out.print("\nEnter a choice: ");
 			choice = key.nextLine().toLowerCase().charAt(0);
-			
-			// If the choice is NOT p, b, or t, warn the user. We will do-while until the input is valid.
-			if ( !(choice == 'p' || choice == 'b' || choice == 't') ) {
+
+			// If the choice is NOT p, b, or t, warn the user. We will do-while until the
+			// input is valid.
+			if (!(choice == 'p' || choice == 'b' || choice == 't')) {
 				System.out.println("Your input was invalid, please try again.");
 			}
-		} while ( !(choice == 'p' || choice == 'b' || choice == 't') );
-		
-		// There is no need to flush the keyboard in this prompt because we acquire the entire line, then we acquire the first character. The line separator ("garbage") is already flushed.
-		
+		} while (!(choice == 'p' || choice == 'b' || choice == 't'));
+
+		// There is no need to flush the keyboard in this prompt because we acquire the
+		// entire line, then we acquire the first character. The line separator
+		// ("garbage") is already flushed.
+
 		return choice;
 	}
 
@@ -116,17 +117,16 @@ public class AppMenu {
 	 */
 	public void printPlayersByName(String results) {
 		String[] splittedLine = results.split(",");
-		
+
 		if (splittedLine.length == 1) {
 			System.out.println("No players are found with this name.\n");
-		}
-		else {
+		} else {
 			System.out.printf("\t- PLAYER INFO -\n");
 			System.out.println("|=============|=============|=============|");
 			System.out.println("|=NAME========|=BALANCE=====|=# WINS======|");
 			for (int i = 0; i < splittedLine.length; i += 3) {
-				System.out
-					.println("| " + splittedLine[i] + "| " + splittedLine[i + 1] + " | " + splittedLine[i + 2] + " |");
+				System.out.println(
+						"| " + splittedLine[i] + "| " + splittedLine[i + 1] + " | " + splittedLine[i + 2] + " |");
 				System.out.println("|-------------|------------|------------|");
 			}
 		}
@@ -183,26 +183,28 @@ public class AppMenu {
 	/**
 	 * Method to ask user for bet amount, with only valid amounts permitted.
 	 * 
-	 * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga 
+	 * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
 	 * @return bet amount
 	 */
 	public int promptWager(int playerBalance) {
 		System.out.println("How much do you wager on your bet?");
-		
+
 		int bet = 0;
-		
-		// Repeatedly prompt the user for a valid bet (must be positive and must be an amount they carry).
+
+		// Repeatedly prompt the user for a valid bet (must be positive and must be an
+		// amount they carry).
 		do {
 			System.out.print("Enter a positive, whole dollar amount (an intenger): ");
 			bet = key.nextInt();
-			
-			if(  !(bet > 0 && bet <= playerBalance) ) {
-				System.out.println("You cannot bet zero or an amount greater than your current balance ($" + playerBalance + ").");
+
+			if (!(bet > 0 && bet <= playerBalance)) {
+				System.out.println(
+						"You cannot bet zero or an amount greater than your current balance ($" + playerBalance + ").");
 			}
-		} while( !(bet > 0 && bet <= playerBalance) );
-		
+		} while (!(bet > 0 && bet <= playerBalance));
+
 		key.nextLine(); // Flush keyboard output.
-		
+
 		return bet;
 	}
 
@@ -213,18 +215,17 @@ public class AppMenu {
 	 */
 	public char promptPlayAgain() {
 		char choice;
-			do {
-				System.out.print("Do you wish to play again? (Y/N)");
-				choice = key.nextLine().toLowerCase().charAt(0);
-				if (choice == 'y' || choice == 'n') {
-					return choice;
-				}
-				else {
-					System.out.println("Your input was invalid, please try again.");
-				}
-			} while (choice != 'y' || choice != 'n');
-			key.nextLine();
-			return choice;
+		do {
+			System.out.print("Do you wish to play again? (Y/N)");
+			choice = key.nextLine().toLowerCase().charAt(0);
+			if (choice == 'y' || choice == 'n') {
+				return choice;
+			} else {
+				System.out.println("Your input was invalid, please try again.");
+			}
+		} while (choice != 'y' || choice != 'n');
+		key.nextLine();
+		return choice;
 	}
 
 	/**
