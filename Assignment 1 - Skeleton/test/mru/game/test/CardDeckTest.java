@@ -1,14 +1,23 @@
 package mru.game.test;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import mru.game.controller.CardDeck;
+
 class CardDeckTest {
-
-	@Test
-	void test() {
-		fail("Not yet implemented");
+	CardDeck test;
+	
+	@BeforeEach
+	void setUp() {
+		test = new CardDeck();
 	}
-
+	
+	@Test
+	void testGetDeck() {
+		assertNotNull(test.getDeck());
+	}
 }
