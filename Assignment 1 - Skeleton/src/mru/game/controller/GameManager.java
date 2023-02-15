@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import mru.game.view.AppMenu;
 import mru.game.model.Record;
 
-/**
+/** The class which is called by the application package to make the application do things.
  * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
  *
  */

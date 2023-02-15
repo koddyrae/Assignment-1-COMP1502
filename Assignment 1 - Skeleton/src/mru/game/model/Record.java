@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 import mru.game.controller.Gambler;
 
+/** A class which represents the on-disk database and contains all methods for interacting with it.
+ * @author Koddy Rae Madriaga, Bryce 'cybeR' Carson
+ */
 public class Record {
 	final private String FILE_PATH = "res/CasinoInfo.txt";
 
@@ -13,16 +16,16 @@ public class Record {
 
 	/**
 	 * Constructor for record holding the listOfPlayers arraylist
-	 * @throws IOException
+	 * @throws IOException If the text file cannot be read, an IOException will be thrown.
 	 */
 	public Record() throws IOException {
 		this.listOfPlayers = loadTextFile();
 	}
 
-	/**
+	/** Get a Player object from the records by name.
 	 * @author Bryce 'cybeR' Carson
 	 * @param name the upper case name of the Player object to get.
-	 * @return Player a Player object
+	 * @return result
 	 */
 	public Player getPlayer(String name) {
 		Player result = null;
@@ -75,7 +78,8 @@ public class Record {
 	 * CasinoInfo in the res folder
 	 * 
 	 * @author Koddy Rae Madriaga, Bryce 'cybeR' Carson
-	 * @throws IOException
+	 * @param casinoPatrons The array list of Gambler objects which tracks all of the player's known to the application, both on-disk and in-memory.
+	 * @throws FileNotFoundException If the file cannot be written to a FileNotFoundException will be thrown.
 	 */
 	public void saveTextFile(ArrayList<Gambler> casinoPatrons) throws FileNotFoundException {
 		// NOTE: The simplest constructor is the correct one; this overrides data to the
@@ -90,9 +94,10 @@ public class Record {
 		pw.close();
 	}
 
-	/**
+	/** Ascertain whether the player exists in the database.
 	 * @author Bryce 'cybeR' Carson
-	 * @param String name: the name to search for in the Database.
+	 * @param name The name to search for in the Database.
+	 * @return exist
 	 */
 	public boolean doesPlayerExist(String name) {
 		boolean exist = false;
@@ -110,7 +115,7 @@ public class Record {
 	 * @author Koddy Rae Madriaga
 	 * @param name user inputted search name
 	 * @return name that contains the user input
-	 * @throws IOException
+	 * @throws IOException If the text file cannot be read an IOException will occur.
 	 */
 	public String findPlayersByName(String name) throws IOException {
 		String result = "";
@@ -155,9 +160,9 @@ public class Record {
 
 	/**
 	 * Method to return an arraylist of current patrons
-	 * 
-	 * @return arraylist of patrons
-	 * @throws IOException
+	 * @author Bryce 'cybeR' Carson
+	 * @return patrons The array list of gamblers that are patrons of the casino.
+	 * @throws IOException If the database could not be loaded an IOException will occur.
 	 */
 	public ArrayList<Gambler> getPatrons() throws IOException {
 

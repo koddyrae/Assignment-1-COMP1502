@@ -3,22 +3,28 @@ package mru.game.controller;
 import java.util.ArrayList;
 import mru.game.view.*;
 
-/**
- *
+/** The game of Punto Banco, in Java, using OOP.
  * @author Bryce 'cybeR' Carson
- *
  */
 public class PuntoBancoGame {
 
+	/**
+	 * The array list of gamblers which are sitting at this table. It only ever contains one player and one banker.
+	 */
 	public ArrayList<Gambler> seatsAtTable;
+	
+	/**
+	 * The deck of cards which the table is using.
+	 */
 	public CardDeck deck;
+	
 	private Gambler player;
 	private Gambler banker;
 	private AppMenu appMenu;
 
-	/**
-	 * In this class you implement the game You should use CardDeck class here See
-	 * the instructions for the game rules
+	/** Initialize the game of Punto Banco with a given Gambler.
+	 * @author Bryce 'cybeR' Carson
+	 * @param player a Gambler object for which to play a game of Baccarat with.
 	 */
 	public PuntoBancoGame(Gambler player) {
 		appMenu = new AppMenu(); // initializes appmenu
@@ -29,9 +35,9 @@ public class PuntoBancoGame {
 
 	/**
 	 * Method that calculates all the logic of the Punto Banco
-	 * 
-	 * @param betChoice user inputted bet (Player, Banker, Tie)
-	 * @param betAmount user inputted bet amount
+	 * @author Bryce 'cybeR' Carson
+	 * @param betChoice user inputed bet (Player, Banker, Tie)
+	 * @param betAmount user inputed bet amount
 	 */
 	public void playRound(char betChoice, int betAmount) {
 		// Deduct the wager from the player's balance.

@@ -4,9 +4,8 @@ import java.util.Scanner;
 
 import mru.game.controller.Gambler;
 
-/**
- * @author Koddy Rae Madriaga, Bryce 'cybeR' Carson 
- * Class for UI This class will be used to show the menus and sub menus to the user It also prompts the user for the inputs and validates them
+/** Class for UI This class will be used to show the menus and sub menus to the user It also prompts the user for the inputs and validates them
+ * @author Koddy Rae Madriaga, Bryce 'cybeR' Carson
  */
 public class AppMenu {
 	Scanner key;
@@ -156,11 +155,17 @@ public class AppMenu {
 		return choice;
 	}
 
+	/** Informs the user they have no more money left to play with.
+	 * @author Koddy Rae Madriaga, Bryce 'cybeR' Carson
+	 */
 	public void brokeDisplay() {
 		System.out.println("You have no money to play with!");
 		System.out.println("Returning to main menu.");
 	}
 
+	/** Informs the user they are not allowed to play because the have no money to play with.
+	 * @author Koddy Rae Madriaga, Bryce 'cybeR' Carson 
+	 */
 	public void refuseVisitor() {
 		System.out.println("You have no money to play with!");
 		System.out.println("Returning to main menu.");
@@ -181,7 +186,8 @@ public class AppMenu {
 	 * Method to ask user for bet amount, with only valid amounts permitted.
 	 * 
 	 * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
-	 * @return bet amount
+	 * @param playerBalance, the integer balance that the player currently has.
+	 * @return bet, the integer amount the player has wagered on their bet.
 	 */
 	public int promptWager(int playerBalance) {
 		System.out.println("How much do you wager on your bet?");
