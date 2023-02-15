@@ -28,10 +28,10 @@ class GamblerTest {
 		testGambler.addCardToHand(testCard);
 	}
 	
-	@Test
-	void testEquals() {
-		assertEquals(true, banker.equals(testGambler));
-	}
+    @Test
+    void testNamesEqual() {
+        assertTrue(banker.equals(testGambler));
+    }
 	
 	@Test
 	void testGambler() {
