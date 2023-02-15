@@ -3,7 +3,8 @@ package mru.game.controller;
 import java.util.ArrayList;
 import mru.game.view.*;
 
-/** The game of Punto Banco, in Java, using OOP.
+/**
+ * Class responsible for all related functionality to the Punto Banco game
  * @author Bryce 'cybeR' Carson
  */
 public class PuntoBancoGame {

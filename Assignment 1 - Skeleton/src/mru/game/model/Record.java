@@ -38,11 +38,10 @@ public class Record {
 	}
 
 	/**
-	 * Loads a text file from disk, if it exists. If the file does not exist, it is
-	 * created.
+	 * Loads a text file from disk, if it exists. If the file does not exist, it is created.
 	 * 
 	 * @author Koddy Rae Madriaga
-	 * @throws FileNotFoundException, IOException
+	 * @throws FileNotFoundException, IOException the exception thrown in case of file not found in file path or errors in the scanner
 	 * @return ArrayList<Player> an array list of player objects.
 	 */
 	private ArrayList<Player> loadTextFile() throws FileNotFoundException, IOException {
@@ -74,8 +73,7 @@ public class Record {
 	}
 
 	/**
-	 * Method used to save the listOfPlayers arraylist to a text file called
-	 * CasinoInfo in the res folder
+	 * Method used to save the listOfPlayers arraylist to a text file called CasinoInfo in the res folder
 	 * 
 	 * @author Koddy Rae Madriaga, Bryce 'cybeR' Carson
 	 * @param casinoPatrons The array list of Gambler objects which tracks all of the player's known to the application, both on-disk and in-memory.
@@ -115,7 +113,7 @@ public class Record {
 	 * @author Koddy Rae Madriaga
 	 * @param name user inputted search name
 	 * @return name that contains the user input
-	 * @throws IOException If the text file cannot be read an IOException will occur.
+	 * @throws IOException the exception thrown in case of errors in loadTextFile
 	 */
 	public String findPlayersByName(String name) throws IOException {
 		String result = "";
@@ -135,7 +133,7 @@ public class Record {
 	 * Method to return the top player(s) in the arraylist by wins
 	 * 
 	 * @author Koddy Rae Madriaga
-	 * @return top player(s) based on order from arraylist
+	 * @return results the top player(s) based on order from arraylist
 	 */
 	public String findTopPlayers() {
 		String result = "";

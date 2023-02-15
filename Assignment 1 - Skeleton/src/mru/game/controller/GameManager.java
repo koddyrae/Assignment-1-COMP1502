@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import mru.game.view.AppMenu;
 import mru.game.model.Record;
 
-/** The class which is called by the application package to make the application do things.
+/**
+ * Class responsible for all functionality related to connecting the components of the project
  * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
  *
  */
@@ -19,8 +20,7 @@ public class GameManager {
 	 * packages.
 	 *
 	 * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
-	 * @throws IOException in the case that the database on-disk cannot be created
-	 *                     or accessed.
+	 * @throws IOException the exception thrown in case of errors in creating/accessing the database
 	 */
 	public GameManager() throws IOException {
 		ArrayList<Gambler> casinoPatrons;
@@ -116,7 +116,7 @@ public class GameManager {
 	 * 
 	 * @param player        main player object that is being used for game
 	 * @param casinoPatrons arraylist of players currently at the table
-	 * @return arraylist of players at table
+	 * @return arraylist the current list of players at table
 	 */
 	private ArrayList<Gambler> playPuntoBanco(Gambler player, ArrayList<Gambler> casinoPatrons) {
 		// Proceed with the games!
@@ -174,7 +174,7 @@ public class GameManager {
 	 * main menu regardless.
 	 *
 	 * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
-	 * @throws IOException
+	 * @throws IOException the exception thrown in case of errors in the appmenu
 	 */
 	private void searchRecords() throws IOException {
 		char searchChoice = APP_MENU.promptWithSearchMenu();

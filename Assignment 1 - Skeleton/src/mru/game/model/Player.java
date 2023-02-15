@@ -36,7 +36,7 @@ public class Player {
  
 	/** Get the player's name.
 	 * @author Koddy Rae Madriaga
-	 * @return name
+	 * @return name the name of player
 	 */
 	public String getName() {
 		return name;
@@ -44,7 +44,7 @@ public class Player {
 
 	/** Get the player's balance.
 	 * @author Koddy Rae Madriaga
-	 * @return balance
+	 * @return balance the balance of the player
 	 */
 	public int getBalance() {
 		return balance;
@@ -52,7 +52,7 @@ public class Player {
 
 	/** Get the count of how many games of Punto Banco the player has won.
 	 * @author Koddy Rae Madriaga
-	 * @return numOfWins
+	 * @return wins the number of wins
 	 */
 	public int getWins() {
 		return numOfWins;
