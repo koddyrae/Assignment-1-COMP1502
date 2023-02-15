@@ -1,9 +1,5 @@
 .DS_Store
 
-# Ughhhh
-Assignment 1 - Skeleton/doc/**
-Assignment 1 - Skeleton/doc/**/*
-
 # Java related
 target/**
 *.jar
@@ -18,8 +14,6 @@ target/**
 bin/**
 tmp/**
 tmp/**/*
-doc/**
-doc/**/*
 *.tmp
 *.bak
 *.swp
