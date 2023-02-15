@@ -6,6 +6,11 @@ import java.util.Scanner;
 
 import mru.game.controller.Gambler;
 
+/**
+ * Class responsible for all file handling in the project
+ * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
+ *
+ */
 public class Record {
 	final private String FILE_PATH = "res/CasinoInfo.txt";
 
@@ -13,13 +18,15 @@ public class Record {
 
 	/**
 	 * Constructor for record holding the listOfPlayers arraylist
-	 * @throws IOException
+	 * @throws IOException the exception thrown in case of an error in loadTextFile
 	 */
 	public Record() throws IOException {
 		this.listOfPlayers = loadTextFile();
 	}
 
 	/**
+	 * Method to return the player object given a player name to check from
+	 * 
 	 * @author Bryce 'cybeR' Carson
 	 * @param name the upper case name of the Player object to get.
 	 * @return Player a Player object
@@ -35,11 +42,10 @@ public class Record {
 	}
 
 	/**
-	 * Loads a text file from disk, if it exists. If the file does not exist, it is
-	 * created.
+	 * Loads a text file from disk, if it exists. If the file does not exist, it is created.
 	 * 
 	 * @author Koddy Rae Madriaga
-	 * @throws FileNotFoundException, IOException
+	 * @throws FileNotFoundException, IOException the exception thrown in case of file not found in file path or errors in the scanner
 	 * @return ArrayList<Player> an array list of player objects.
 	 */
 	private ArrayList<Player> loadTextFile() throws FileNotFoundException, IOException {
@@ -71,11 +77,10 @@ public class Record {
 	}
 
 	/**
-	 * Method used to save the listOfPlayers arraylist to a text file called
-	 * CasinoInfo in the res folder
+	 * Method used to save the listOfPlayers arraylist to a text file called CasinoInfo in the res folder
 	 * 
 	 * @author Koddy Rae Madriaga, Bryce 'cybeR' Carson
-	 * @throws IOException
+	 * @throws IOException the exception thrown in case of file not being found in the assigned file path
 	 */
 	public void saveTextFile(ArrayList<Gambler> casinoPatrons) throws FileNotFoundException {
 		// NOTE: The simplest constructor is the correct one; this overrides data to the
@@ -92,7 +97,7 @@ public class Record {
 
 	/**
 	 * @author Bryce 'cybeR' Carson
-	 * @param String name: the name to search for in the Database.
+	 * @param String name the name to search for in the Database.
 	 */
 	public boolean doesPlayerExist(String name) {
 		boolean exist = false;
@@ -110,7 +115,7 @@ public class Record {
 	 * @author Koddy Rae Madriaga
 	 * @param name user inputted search name
 	 * @return name that contains the user input
-	 * @throws IOException
+	 * @throws IOException the exception thrown in case of errors in loadTextFile
 	 */
 	public String findPlayersByName(String name) throws IOException {
 		String result = "";
@@ -130,7 +135,7 @@ public class Record {
 	 * Method to return the top player(s) in the arraylist by wins
 	 * 
 	 * @author Koddy Rae Madriaga
-	 * @return top player(s) based on order from arraylist
+	 * @return results the top player(s) based on order from arraylist
 	 */
 	public String findTopPlayers() {
 		String result = "";
@@ -156,8 +161,8 @@ public class Record {
 	/**
 	 * Method to return an arraylist of current patrons
 	 * 
-	 * @return arraylist of patrons
-	 * @throws IOException
+	 * @return patrons the arraylist of gamblers from the table
+	 * @throws IOException the exception thrown in case of error in loadTextFile
 	 */
 	public ArrayList<Gambler> getPatrons() throws IOException {
 

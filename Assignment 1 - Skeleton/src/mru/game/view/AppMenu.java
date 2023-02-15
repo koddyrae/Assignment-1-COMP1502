@@ -90,10 +90,6 @@ public class AppMenu {
 			}
 		} while (!(choice == 'p' || choice == 'b' || choice == 't'));
 
-		// There is no need to flush the keyboard in this prompt because we acquire the
-		// entire line, then we acquire the first character. The line separator
-		// ("garbage") is already flushed.
-
 		return choice;
 	}
 
@@ -180,8 +176,7 @@ public class AppMenu {
 	/**
 	 * Method to ask user for bet amount, with only valid amounts permitted.
 	 * 
-	 * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
-	 * @return bet amount
+	 * @return bet the bet amount that the player wants to bet
 	 */
 	public int promptWager(int playerBalance) {
 		System.out.println("How much do you wager on your bet?");
@@ -208,7 +203,7 @@ public class AppMenu {
 	/**
 	 * Method to ask user to play again
 	 * 
-	 * @return boolean on if player wants to play again or not
+	 * @return result the boolean if player wants to play again or not
 	 */
 	public char promptPlayAgain() {
 		char choice;
@@ -244,10 +239,10 @@ public class AppMenu {
 	/**
 	 * Method to print the game round and show the result
 	 * 
-	 * @param player1   player object
-	 * @param banker    banker object
-	 * @param amountWon amount won/lost in round
-	 * @param result    result boolean to check if won/lost
+	 * @param player1   the player object
+	 * @param banker    the banker object
+	 * @param amountWon the amount won/lost in round
+	 * @param result    the result boolean to check if won/lost
 	 */
 	public void roundDisplay(Gambler player1, Gambler banker, int amountWon, boolean result) {
 		String maybeWin = result ? " Won " : " Lose ";

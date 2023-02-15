@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import mru.game.model.Player;
 
 /**
+ * Class responsible for the functionality of gambler at the table in a game
  * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
  */
 public class Gambler {
@@ -20,23 +21,35 @@ public class Gambler {
 
 	public ArrayList<Card> hand = new ArrayList<Card>();
 
+	/**
+	 * @param isBanker the check if it is the banker
+	 */
 	public Gambler(boolean isBanker) {
 		this.balance = BANKERS_BALANCE;
 		this.name = BANKERS_NAME;
 	}
 
+	/**
+	 * @param name the name of the gambler
+	 */
 	public Gambler(String name) {
 		this.name = name;
 		this.balance = 100;
 		this.numberOfWins = 0;
 	}
 
+	/**
+	 * @param player the player object being turned into a gambler
+	 */
 	public Gambler(Player player) {
 		this.name = player.getName();
 		this.balance = player.getBalance();
 		this.numberOfWins = player.getWins();
 	}
 
+	/**
+	 * @return score the calculated score of the gambler's hand
+	 */
 	public int scoreHand() {
 		int score = 0;
 
@@ -49,54 +62,93 @@ public class Gambler {
 		return score % 10;
 	}
 
+	/**
+	 * @param cardToAddToHand the current card being added to the hand
+	 */
 	public void addCardToHand(Card cardToAddToHand) {
 		this.hand.add(cardToAddToHand);
 	}
 
+	/**
+	 * Method to increment the number of wins by 1
+	 */
 	public void incrementNumberOfWins() {
 		this.numberOfWins++;
 	}
 
+	/**
+	 * @return name the name of the gambler
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @return balance the balance of the gambler
+	 */
 	public int getBalance() {
 		return balance;
 	}
 
+	/**
+	 * @return numberOfWins the number of wins
+	 */
 	public int getWins() {
 		return numberOfWins;
 	}
 
+	/**
+	 * @param balance the balance of the gambler
+	 */
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
 
+	/**
+	 * @param wins the wins of the gambler
+	 */
 	public void setWins(int wins) {
 		this.numberOfWins = wins;
 	}
 
+	/**
+	 * @return hand the arraylist of the current hand
+	 */
 	public ArrayList<Card> getHand() {
 		return hand;
 	}
 
+	/**
+	 * @return score the score of the gambler
+	 */
 	public int getScore() {
 		return score;
 	}
 
+	/**
+	 * @param score the score of the gambler
+	 */
 	public void setScore(int score) {
 		this.score = score;
 	}
 
+	/**
+	 * @return admittedToCasino the boolean to check if the player was allowed into the casino
+	 */
 	public boolean getAdmittedToCasino() {
 		return this.admittedToCasino;
 	}
 
+	/**
+	 * @param admittedToCasino the boolean to check if the player was allowed into the casino
+	 */
 	public void setAdmittedToCasino(boolean admittedToCasino) {
 		this.admittedToCasino = admittedToCasino;
 	}
 
+	/**
+	 * Method to check if two objects are the same
+	 */
 	@Override
 	public boolean equals(Object o) {
 		// Return true if the object is being compared with itself.

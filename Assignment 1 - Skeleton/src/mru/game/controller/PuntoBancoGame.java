@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import mru.game.view.*;
 
 /**
- *
+ * Class responsible for all related functionality to the Punto Banco game
  * @author Bryce 'cybeR' Carson
  *
  */
@@ -17,8 +17,7 @@ public class PuntoBancoGame {
 	private AppMenu appMenu;
 
 	/**
-	 * In this class you implement the game You should use CardDeck class here See
-	 * the instructions for the game rules
+	 * Constructor for puntobanco game, creating the appmenu, card deck and player
 	 */
 	public PuntoBancoGame(Gambler player) {
 		appMenu = new AppMenu(); // initializes appmenu
