@@ -11,14 +11,18 @@ public class Record {
 
 	private ArrayList<Player> listOfPlayers;
 
+	/**
+	 * Constructor for record holding the listOfPlayers arraylist
+	 * @throws IOException
+	 */
 	public Record() throws IOException {
 		this.listOfPlayers = loadTextFile();
 	}
 
 	/**
 	 * @author Bryce 'cybeR' Carson
-	 * @param name: the upper case name of the Player object to get.
-	 * @return Player: a Player object
+	 * @param name the upper case name of the Player object to get.
+	 * @return Player a Player object
 	 */
 	public Player getPlayer(String name) {
 		Player result = null;
@@ -70,8 +74,7 @@ public class Record {
 	 * Method used to save the listOfPlayers arraylist to a text file called
 	 * CasinoInfo in the res folder
 	 * 
-	 * @author Koddy Rae Madriaga
-	 * @contributor Bryce 'cybeR' Carson
+	 * @author Koddy Rae Madriaga, Bryce 'cybeR' Carson
 	 * @throws IOException
 	 */
 	public void saveTextFile(ArrayList<Gambler> casinoPatrons) throws FileNotFoundException {

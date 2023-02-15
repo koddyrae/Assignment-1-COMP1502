@@ -18,8 +18,7 @@ public class GameManager {
 	 * Creates the application, calling methods as necessary from the model and view
 	 * packages.
 	 *
-	 * @author Bryce 'cybeR' Carson
-	 * @contributor Koddy Rae Madriaga
+	 * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
 	 * @throws IOException in the case that the database on-disk cannot be created
 	 *                     or accessed.
 	 */
@@ -174,8 +173,7 @@ public class GameManager {
 	 * Search the database for particular records, then return the player to the
 	 * main menu regardless.
 	 *
-	 * @author Bryce 'cybeR' Carson
-	 * @contributor Koddy Rae Madriaga
+	 * @author Bryce 'cybeR' Carson, Koddy Rae Madriaga
 	 * @throws IOException
 	 */
 	private void searchRecords() throws IOException {

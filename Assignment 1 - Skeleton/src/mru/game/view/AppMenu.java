@@ -11,6 +11,9 @@ import mru.game.controller.Gambler;
 public class AppMenu {
 	Scanner key;
 
+	/**
+	 * Constructor holding a scanner object 
+	 */
 	public AppMenu() {
 		key = new Scanner(System.in);
 	}
@@ -135,7 +138,6 @@ public class AppMenu {
 	/**
 	 * Method to allow player to return back to main menu
 	 * 
-	 * @return choice user choice to continue in main menu
 	 */
 	public void promptEnterToContinue() {
 		System.out.println("Press \"Enter\" to Continue...");
@@ -154,11 +156,6 @@ public class AppMenu {
 		return choice;
 	}
 
-	/**
-	 * Method to return user to main menu a
-	 * 
-	 * @return choice user choice when back at main menu
-	 */
 	public void brokeDisplay() {
 		System.out.println("You have no money to play with!");
 		System.out.println("Returning to main menu.");

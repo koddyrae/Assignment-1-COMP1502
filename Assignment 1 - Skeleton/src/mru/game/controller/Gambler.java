@@ -125,7 +125,7 @@ public class Gambler {
 	 * A bare-bones toString method for debugging purposes.
 	 * 
 	 * @author Bryce 'cybeR' Carson
-	 * @returns String the string to print.
+	 * @return String the string to print.
 	 */
 	public String toString() {
 		return this.getName() + " " + this.getBalance() + " " + this.getWins();

@@ -4,14 +4,10 @@ import mru.game.controller.Gambler;
 
 /**
  * @author Koddy Rae Madriaga
- *
+ *  This class represent each player record in the Database It is basically a model class for each record in the txt file
  */
 public class Player {
 
-	/**
-	 * This class represent each player record in the Database It is basically a
-	 * model class for each record in the txt file
-	 */
 	private String name;
 	private int balance;
 	private int numOfWins;
